@@ -1,0 +1,98 @@
+ManifestFileVersion: 0
+CRC: 1134559346
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a98d92e80f1254e6bf7a532b3a838da1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b59af850a88b34607f046ee9df62affb
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/asset bundle/art/swampGroundWoodPlankShadowD.png
+- Assets/asset bundle/materials/placeholder (-4016)_Material.mat
+- Assets/asset bundle/art/swampBackgroundRockD.png
+- Assets/asset bundle/materials/introSwampBackgroundTreeB (-3356)_Material.mat
+- Assets/asset bundle/materials/swampMossGroundA (-8016)_Material.mat
+- Assets/asset bundle/art/swampBreakableFloorA.png
+- Assets/asset bundle/temp/Remove-bg.ai_1715943241282.png
+- Assets/asset bundle/materials/Remove-bg.ai_1715943241282 (-2550)_Material.mat
+- Assets/asset bundle/art/swampBackgroundRockE.png
+- Assets/asset bundle/art/swampMossGroundA.png
+- Assets/asset bundle/temp/8vm0tb.jpg
+- Assets/asset bundle/materials/Yellow_Orb (-2848)_Material.mat
+- Assets/asset bundle/elements/Bash.prefab
+- Assets/asset bundle/art/ledgeCHigh.png
+- Assets/asset bundle/elements/Spring.prefab
+- Assets/asset bundle/art/sprite (9).png
+- Assets/asset bundle/art/sprite (13).png
+- Assets/asset bundle/art/introSwampGiantShellBSplitC.png
+- Assets/asset bundle/art/swampFirePedestalA.png
+- Assets/asset bundle/temp/IslandTourWaluigi.png
+- Assets/asset bundle/art/swampStatueF.png
+- Assets/asset bundle/art/sprite (5).png
+- Assets/asset bundle/elements/Leash.prefab
+- Assets/asset bundle/art/kwolokcavernStoneSpikesSheet.png
+- Assets/asset bundle/art/sprite (8).png
+- Assets/asset bundle/materials/IslandTourWaluigi (-3030)_Material.mat
+- Assets/asset bundle/temp/New Project (2).png
+- Assets/asset bundle/materials/sprite (4) (-7880)_Material.mat
+- Assets/asset bundle/art/sprite (6).png
+- Assets/asset bundle/temp/New Project (3).png
+- Assets/asset bundle/art/introSwampHangingVineGroundA.png
+- Assets/asset bundle/materials/New Project (2) (-3146)_Material.mat
+- Assets/asset bundle/materials/swampBackgroundRuinsRockPieceF (-1836)_Material.mat
+- Assets/asset bundle/art/swampBackgroundRuinsRockPieceF.png
+- Assets/asset bundle/temp/Yellow_Orb.png
+- Assets/asset bundle/art/sprite (2).png
+- Assets/asset bundle/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
+- Assets/asset bundle/art/introSwampGiantShellASplitC.png
+- Assets/asset bundle/art/sprite (12).png
+- Assets/asset bundle/art/sprite (10).png
+- Assets/asset bundle/art/sprite (11).png
+- Assets/asset bundle/art/swampBreakableFloorC.png
+- Assets/asset bundle/materials/New Project (3) (-3662)_Material.mat
+- Assets/asset bundle/art/introSwampBackgroundTreeB.png
+- Assets/asset bundle/temp/pngwing.com.png
+- Assets/asset bundle/art/swampBackgroundRockH.png
+- Assets/asset bundle/art/sprite (1).png
+- Assets/asset bundle/materials/pngwing.com (-1734)_Material.mat
+- Assets/asset bundle/art/sprite.png
+- Assets/asset bundle/art/swampKwoloksEntranceBaseC.png
+- Assets/asset bundle/art/swampBreakableFloorF.png
+- Assets/asset bundle/art/sprite (14).png
+- Assets/asset bundle/materials/Square (-2334)_Material.mat
+- Assets/asset bundle/art/sprite (3).png
+- Assets/asset bundle/materials/8vm0tb (-1748)_Material.mat
+- Assets/asset bundle/art/sprite (15).png
+- Assets/asset bundle/temp/placeholder.png
+- Assets/asset bundle/art/swampNightcrawlerBonesC.png
+- Assets/asset bundle/prefab root.prefab
+- Assets/asset bundle/art/sprite (4).png
+- Assets/asset bundle/temp/Square.png
+- Assets/asset bundle/art/swampFirewoodA.png
+- Assets/asset bundle/art/sprite (7).png
+- Assets/asset bundle/materials/IslandTourWaluigi (-2254)_Material.mat
+- Assets/asset bundle/art/introSwampWoodGroundBarkB.png
+Dependencies: []
