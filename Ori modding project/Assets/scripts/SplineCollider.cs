@@ -10,6 +10,8 @@ public class SplineCollider : MonoBehaviour
     public EdgeCollider2D Edge;
 
     [Header("Spline")]
+    public SplineType CurveType;
+
     public int SplineCount = 100;
 
     public Color GizmosCurveColor;
@@ -20,6 +22,13 @@ public class SplineCollider : MonoBehaviour
 
     [Header("Collision Settings")]
     public float ColliderWidth;
+
+    public enum SplineType
+    {
+        Cubic,
+        Bezier,
+        CatmullRom
+    }
 
     [EditorCools.Button]
     void GenerateCollision()
@@ -33,15 +42,31 @@ public class SplineCollider : MonoBehaviour
             Points[x] = transform.position + (Vector3)Points[x];
         }
 
-        Vector2[] InterpolatedPoints = Cubic.Interpolate(Points, SplineCount);
+
+        List<Vector2> InterpolatedPoints = new List<Vector2>();
+
+        switch(CurveType)
+        {
+            case SplineType.Cubic:
+                InterpolatedPoints = Cubic.Interpolate(Points, SplineCount).ToList();
+                break;
+
+            case SplineType.Bezier:
+                InterpolatedPoints = Bezier.Interpolate(Points, SplineCount).ToList();
+                break;
+
+            case SplineType.CatmullRom:
+                InterpolatedPoints = CatmullRom.Interpolate(Points, SplineCount).ToList();
+                break;
+        }
 
         GameObject ColliderGameObject = new GameObject("Collision");
 
         ColliderGameObject.transform.parent = transform;
 
-        for (int y = 0; y < InterpolatedPoints.Length; y++)
+        for (int y = 0; y < InterpolatedPoints.ToArray().Length; y++)
         {
-            if (y == InterpolatedPoints.Length - 1) break;
+            if (y == InterpolatedPoints.ToArray().Length - 1) break;
 
             InstanciateCollisionPlane(InterpolatedPoints[y], InterpolatedPoints[y + 1], ColliderGameObject.transform, ColliderWidth);
         }
@@ -93,11 +118,26 @@ public class SplineCollider : MonoBehaviour
             Points[x] = transform.position + (Vector3)Points[x];
         }
 
-        Vector2[] InterpolatedPoints = Cubic.Interpolate(Points, SplineCount);
+        List<Vector2> InterpolatedPoints = new List<Vector2>();
 
-        for (int y = 0; y < InterpolatedPoints.Length; y++)
+        switch (CurveType)
         {
-            if (y == InterpolatedPoints.Length - 1) break;
+            case SplineType.Cubic:
+                InterpolatedPoints = Cubic.Interpolate(Points, SplineCount).ToList();
+                break;
+
+            case SplineType.Bezier:
+                InterpolatedPoints = Bezier.Interpolate(Points, SplineCount).ToList();
+                break;
+
+            case SplineType.CatmullRom:
+                InterpolatedPoints = CatmullRom.Interpolate(Points, SplineCount).ToList();
+                break;
+        }
+
+        for (int y = 0; y < InterpolatedPoints.ToArray().Length; y++)
+        {
+            if (y == InterpolatedPoints.ToArray().Length - 1) break;
         
             Gizmos.DrawLine((Vector3)InterpolatedPoints[y], (Vector3)InterpolatedPoints[y + 1]);
         }
@@ -217,6 +257,89 @@ public class SplineCollider : MonoBehaviour
             }
 
             return (a, b);
+        }
+    }
+
+    public static class Bezier
+    {
+        public static Vector2[] Interpolate(Vector2[] controlPoints, int numPoints)
+        {
+            if (controlPoints == null || controlPoints.Length < 2)
+                throw new ArgumentException("controlPoints must contain at least 2 points");
+
+            List<Vector2> result = new List<Vector2>();
+
+            for (int i = 0; i <= numPoints; i++)
+            {
+                float t = (float)i / numPoints;
+                result.Add(CalculateBezierPoint(t, controlPoints));
+            }
+
+            return result.ToArray();
+        }
+
+        private static Vector2 CalculateBezierPoint(float t, Vector2[] controlPoints)
+        {
+            int n = controlPoints.Length - 1;
+            Vector2 point = new Vector2(0, 0);
+
+            for (int i = 0; i <= n; i++)
+            {
+                float binomialCoefficient = BinomialCoefficient(n, i);
+                float term = binomialCoefficient * Mathf.Pow(t, i) * Mathf.Pow(1 - t, n - i);
+                point += term * controlPoints[i];
+            }
+
+            return point;
+        }
+
+        private static int BinomialCoefficient(int n, int k)
+        {
+            int result = 1;
+            for (int i = 1; i <= k; i++)
+            {
+                result *= n - (k - i);
+                result /= i;
+            }
+            return result;
+        }
+    }
+
+    public static class CatmullRom
+    {
+        public static Vector2[] Interpolate(Vector2[] points, int numPoints)
+        {
+            if (points == null || points.Length < 4)
+                throw new ArgumentException("points must contain at least 4 points");
+
+            List<Vector2> result = new List<Vector2>();
+
+            for (int i = 0; i < points.Length - 3; i++)
+            {
+                for (int j = 0; j <= numPoints; j++)
+                {
+                    float t = (float)j / numPoints;
+                    result.Add(CalculateCatmullRomPoint(t, points[i], points[i + 1], points[i + 2], points[i + 3]));
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        private static Vector2 CalculateCatmullRomPoint(float t, Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3)
+        {
+            float t2 = t * t;
+            float t3 = t2 * t;
+
+            float a0 = -0.5f * t3 + t2 - 0.5f * t;
+            float a1 = 1.5f * t3 - 2.5f * t2 + 1.0f;
+            float a2 = -1.5f * t3 + 2.0f * t2 + 0.5f * t;
+            float a3 = 0.5f * t3 - 0.5f * t2;
+
+            return new Vector2(
+                a0 * p0.x + a1 * p1.x + a2 * p2.x + a3 * p3.x,
+                a0 * p0.y + a1 * p1.y + a2 * p2.y + a3 * p3.y
+            );
         }
     }
 }
