@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2946642178
+CRC: 3134048549
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 02f5fca338a966c01b11db79a6004d30
+    Hash: bd8622ccf6a4e8381750f19cfb5859c4
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6516b162df854aa0ce23c9948cb000e9
+    Hash: 1daf6d6c1ed01132f7933af20251b42b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -39,19 +39,18 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/asset bundle/art/swampGroundWoodPlankShadowD.png
-- Assets/asset bundle/materials/placeholder (-4016)_Material.mat
+- Assets/asset bundle/cache/materials/placeholder (-4016)_Material.mat
 - Assets/asset bundle/art/swampBackgroundRockD.png
-- Assets/asset bundle/materials/introSwampBackgroundTreeB (-3356)_Material.mat
-- Assets/asset bundle/materials/swampMossGroundA (-8016)_Material.mat
+- Assets/asset bundle/cache/materials/introSwampBackgroundTreeB (-3356)_Material.mat
+- Assets/asset bundle/cache/materials/swampMossGroundA (-8016)_Material.mat
 - Assets/asset bundle/art/swampBreakableFloorA.png
 - Assets/asset bundle/temp assets/Remove-bg.ai_1715943241282.png
-- Assets/asset bundle/materials/Remove-bg.ai_1715943241282 (-2550)_Material.mat
+- Assets/asset bundle/cache/materials/Remove-bg.ai_1715943241282 (-2550)_Material.mat
 - Assets/asset bundle/art/swampBackgroundRockE.png
 - Assets/asset bundle/art/swampMossGroundA.png
 - Assets/asset bundle/temp assets/8vm0tb.jpg
-- Assets/asset bundle/materials/Yellow_Orb (-2848)_Material.mat
+- Assets/asset bundle/cache/materials/Yellow_Orb (-2848)_Material.mat
 - Assets/asset bundle/elements/Bash.prefab
-- Assets/asset bundle/meshes/terrain collider.mesh
 - Assets/asset bundle/art/ledgeCHigh.png
 - Assets/asset bundle/elements/Spring.prefab
 - Assets/asset bundle/art/sprite (9).png
@@ -64,37 +63,38 @@ Assets:
 - Assets/asset bundle/elements/Leash.prefab
 - Assets/asset bundle/art/kwolokcavernStoneSpikesSheet.png
 - Assets/asset bundle/art/sprite (8).png
-- Assets/asset bundle/materials/IslandTourWaluigi (-3030)_Material.mat
+- Assets/asset bundle/cache/materials/IslandTourWaluigi (-3030)_Material.mat
 - Assets/asset bundle/temp assets/New Project (2).png
-- Assets/asset bundle/materials/sprite (4) (-7880)_Material.mat
+- Assets/asset bundle/cache/materials/sprite (4) (-7880)_Material.mat
 - Assets/asset bundle/art/sprite (6).png
 - Assets/asset bundle/temp assets/New Project (3).png
 - Assets/asset bundle/art/introSwampHangingVineGroundA.png
-- Assets/asset bundle/materials/New Project (2) (-3146)_Material.mat
-- Assets/asset bundle/materials/swampBackgroundRuinsRockPieceF (-1836)_Material.mat
+- Assets/asset bundle/cache/materials/New Project (2) (-3146)_Material.mat
+- Assets/asset bundle/cache/materials/swampBackgroundRuinsRockPieceF (-1836)_Material.mat
 - Assets/asset bundle/art/swampBackgroundRuinsRockPieceF.png
 - Assets/asset bundle/temp assets/Yellow_Orb.png
 - Assets/asset bundle/art/sprite (2).png
-- Assets/asset bundle/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
+- Assets/asset bundle/cache/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
 - Assets/asset bundle/art/introSwampGiantShellASplitC.png
 - Assets/asset bundle/art/sprite (12).png
 - Assets/asset bundle/art/sprite (10).png
 - Assets/asset bundle/art/sprite (11).png
 - Assets/asset bundle/art/swampBreakableFloorC.png
-- Assets/asset bundle/materials/New Project (3) (-3662)_Material.mat
+- Assets/asset bundle/cache/materials/New Project (3) (-3662)_Material.mat
 - Assets/asset bundle/art/introSwampBackgroundTreeB.png
 - Assets/asset bundle/temp assets/pngwing.com.png
+- Assets/asset bundle/cache/meshes/terrain collider WHRAF.mesh
 - Assets/asset bundle/art/swampBackgroundRockH.png
 - Assets/asset bundle/art/sprite (1).png
-- Assets/asset bundle/materials/pngwing.com (-1734)_Material.mat
+- Assets/asset bundle/cache/materials/pngwing.com (-1734)_Material.mat
 - Assets/asset bundle/art/sprite.png
 - Assets/asset bundle/art/swampKwoloksEntranceBaseC.png
 - Assets/asset bundle/art/swampBreakableFloorF.png
 - Assets/asset bundle/art/sprite (14).png
-- Assets/asset bundle/materials/Square (-2334)_Material.mat
+- Assets/asset bundle/cache/materials/Square (-2334)_Material.mat
 - Assets/asset bundle/art/sprite (3).png
 - Assets/asset bundle/elements/spline collider.prefab
-- Assets/asset bundle/materials/8vm0tb (-1748)_Material.mat
+- Assets/asset bundle/cache/materials/8vm0tb (-1748)_Material.mat
 - Assets/asset bundle/art/sprite (15).png
 - Assets/asset bundle/temp assets/placeholder.png
 - Assets/asset bundle/art/swampNightcrawlerBonesC.png
@@ -103,6 +103,6 @@ Assets:
 - Assets/asset bundle/temp assets/Square.png
 - Assets/asset bundle/art/swampFirewoodA.png
 - Assets/asset bundle/art/sprite (7).png
-- Assets/asset bundle/materials/IslandTourWaluigi (-2254)_Material.mat
+- Assets/asset bundle/cache/materials/IslandTourWaluigi (-2254)_Material.mat
 - Assets/asset bundle/art/introSwampWoodGroundBarkB.png
 Dependencies: []

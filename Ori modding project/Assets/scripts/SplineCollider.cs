@@ -23,7 +23,7 @@ public class SplineCollider : MonoBehaviour
     [Header("Collision Settings")]
     public float ColliderWidth;
 
-    [HideInInspector]
+    [Header("Save Settings")]
     public string SavePath;
 
     public enum SplineType
@@ -33,8 +33,8 @@ public class SplineCollider : MonoBehaviour
         CatmullRom
     }
 
-    [EditorCools.Button]
-    void GenerateCollision()
+    [NaughtyAttributes.Button(null, NaughtyAttributes.EButtonEnableMode.Editor)]
+    public void GenerateCollision()
     {
         if (transform.Find("Collision") != null) DestroyImmediate(transform.Find("Collision").gameObject);
 
@@ -119,8 +119,8 @@ public class SplineCollider : MonoBehaviour
     }
 
 
-    [EditorCools.Button]
-    void RemoveCollision()
+    [NaughtyAttributes.Button(null, NaughtyAttributes.EButtonEnableMode.Editor)]
+    public void RemoveCollision()
     {
         if (transform.Find("Collision") != null)
         {
@@ -146,14 +146,6 @@ public class SplineCollider : MonoBehaviour
             }
 #endif
         }
-    }
-
-    [EditorCools.Button]
-    void RegerenateSavePath()
-    {
-        SavePath = String.Empty;
-
-        GenerateSavePath();
     }
 
     public GameObject InstanciateCollisionQuad(Vector2 pointA, Vector2 pointB, Transform Parent, float QuadWidth)
@@ -185,10 +177,6 @@ public class SplineCollider : MonoBehaviour
     void Reset()
     {
         Edge = GetComponent<EdgeCollider2D>();
-
-        SavePath = String.Empty;
-
-        RemoveCollision();
     }
 
     void OnDrawGizmosSelected()
