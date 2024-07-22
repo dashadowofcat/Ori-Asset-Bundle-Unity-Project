@@ -23,6 +23,9 @@ public class SplineCollider : MonoBehaviour
     [Header("Collision Settings")]
     public float ColliderWidth;
 
+    [HideInInspector]
+    public string SavePath;
+
     public enum SplineType
     {
         Cubic,
@@ -33,7 +36,7 @@ public class SplineCollider : MonoBehaviour
     [EditorCools.Button]
     void GenerateCollision()
     {
-        if(transform.Find("Collision") != null) DestroyImmediate(transform.Find("Collision").gameObject);
+        if (transform.Find("Collision") != null) DestroyImmediate(transform.Find("Collision").gameObject);
 
         Vector2[] Points = Edge.points;
 
@@ -45,7 +48,7 @@ public class SplineCollider : MonoBehaviour
 
         List<Vector2> InterpolatedPoints = new List<Vector2>();
 
-        switch(CurveType)
+        switch (CurveType)
         {
             case SplineType.Cubic:
                 InterpolatedPoints = Cubic.Interpolate(Points, SplineCount).ToList();
@@ -97,11 +100,24 @@ public class SplineCollider : MonoBehaviour
             DestroyImmediate(collider.gameObject);
         }
 
+        GenerateSavePath();
+
 #if UNITY_EDITOR
-        AssetDatabase.CreateAsset(mesh, $"Assets/asset bundle/meshes/{transform.name}.mesh");
+        AssetDatabase.CreateAsset(mesh, SavePath);
         AssetDatabase.SaveAssets();
 #endif
     }
+
+    string GenerateName(int Length)
+    {
+        System.Random random = new System.Random();
+
+        string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        return new string(Enumerable.Repeat(chars, Length)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
 
     [EditorCools.Button]
     void RemoveCollision()
@@ -111,10 +127,33 @@ public class SplineCollider : MonoBehaviour
             DestroyImmediate(transform.Find("Collision").gameObject);
 
 #if UNITY_EDITOR
-            AssetDatabase.DeleteAsset($"Assets/asset bundle/meshes/{transform.name}.obj");
+            AssetDatabase.DeleteAsset(SavePath);
             AssetDatabase.SaveAssets();
 #endif
         }
+    }
+
+    void GenerateSavePath()
+    {
+        if (SavePath == string.Empty)
+        {
+            SavePath = $"Assets/asset bundle/cache/meshes/{transform.name} {GenerateName(5)}.mesh";
+
+#if UNITY_EDITOR
+            while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(SavePath)))
+            {
+                SavePath = $"Assets/asset bundle/cache/meshes/{transform.name} {GenerateName(5)}.mesh";
+            }
+#endif
+        }
+    }
+
+    [EditorCools.Button]
+    void RegerenateSavePath()
+    {
+        SavePath = String.Empty;
+
+        GenerateSavePath();
     }
 
     public GameObject InstanciateCollisionQuad(Vector2 pointA, Vector2 pointB, Transform Parent, float QuadWidth)
@@ -146,6 +185,10 @@ public class SplineCollider : MonoBehaviour
     void Reset()
     {
         Edge = GetComponent<EdgeCollider2D>();
+
+        SavePath = String.Empty;
+
+        RemoveCollision();
     }
 
     void OnDrawGizmosSelected()

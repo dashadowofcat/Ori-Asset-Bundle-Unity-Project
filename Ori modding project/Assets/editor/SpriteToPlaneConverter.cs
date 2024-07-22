@@ -56,7 +56,7 @@ public class SpriteToPlaneConverter : EditorWindow
         Material spriteMaterial = new Material(Shader.Find("Sprites/Default"));
         spriteMaterial.mainTexture = texture;
 
-        string materialFolderPath = "Assets/asset bundle/materials";
+        string materialFolderPath = "Assets/asset bundle/cache/materials";
         string materialPath = $"{materialFolderPath}/{texture.name} ({plane.GetInstanceID()})_Material.mat";
         AssetDatabase.CreateAsset(spriteMaterial, materialPath);
         AssetDatabase.SaveAssets();
