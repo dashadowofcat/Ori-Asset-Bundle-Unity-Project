@@ -21,6 +21,7 @@ public class ElementParameters : MonoBehaviour
         }
     }
 
+    [NaughtyAttributes.ReorderableList]
     public List<Parameter> Parameters = new List<Parameter>();
 
     void Reset()
