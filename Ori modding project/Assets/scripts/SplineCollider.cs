@@ -64,21 +64,60 @@ public class SplineCollider : MonoBehaviour
 
         ColliderGameObject.transform.parent = transform;
 
+        List<MeshFilter> ColliderMeshes = new List<MeshFilter>();
+
         for (int y = 0; y < InterpolatedPoints.ToArray().Length; y++)
         {
             if (y == InterpolatedPoints.ToArray().Length - 1) break;
 
-            InstanciateCollisionPlane(InterpolatedPoints[y], InterpolatedPoints[y + 1], ColliderGameObject.transform, ColliderWidth);
+            var Quad = InstanciateCollisionQuad(InterpolatedPoints[y], InterpolatedPoints[y + 1], ColliderGameObject.transform, ColliderWidth);
+
+            ColliderMeshes.Add(Quad.GetComponent<MeshFilter>());
         }
+
+        CombineInstance[] combine = new CombineInstance[ColliderMeshes.ToArray().Length];
+
+        int z = 0;
+        while (z < ColliderMeshes.ToArray().Length)
+        {
+            combine[z].mesh = ColliderMeshes[z].sharedMesh;
+            combine[z].transform = ColliderMeshes[z].transform.localToWorldMatrix;
+            ColliderMeshes[z].gameObject.SetActive(false);
+
+            z++;
+        }
+
+        Mesh mesh = new Mesh();
+        mesh.CombineMeshes(combine);
+        ColliderGameObject.AddComponent<MeshFilter>().sharedMesh = mesh;
+        ColliderGameObject.AddComponent<MeshCollider>();
+
+        foreach (MeshFilter collider in ColliderMeshes)
+        {
+            DestroyImmediate(collider.gameObject);
+        }
+
+#if UNITY_EDITOR
+        AssetDatabase.CreateAsset(mesh, $"Assets/asset bundle/meshes/{transform.name}.mesh");
+        AssetDatabase.SaveAssets();
+#endif
     }
 
     [EditorCools.Button]
     void RemoveCollision()
     {
-        if (transform.Find("Collision") != null) DestroyImmediate(transform.Find("Collision").gameObject);
+        if (transform.Find("Collision") != null)
+        {
+            DestroyImmediate(transform.Find("Collision").gameObject);
+
+#if UNITY_EDITOR
+            AssetDatabase.DeleteAsset($"Assets/asset bundle/meshes/{transform.name}.obj");
+            AssetDatabase.SaveAssets();
+#endif
+        }
     }
 
-    public void InstanciateCollisionPlane(Vector2 pointA, Vector2 pointB, Transform Parent, float QuadWidth)
+    public GameObject InstanciateCollisionQuad(Vector2 pointA, Vector2 pointB, Transform Parent, float QuadWidth)
     {
         Vector2 midpoint = (pointA + pointB) / 2f;
 
@@ -99,6 +138,8 @@ public class SplineCollider : MonoBehaviour
         DestroyImmediate(quad.GetComponent<MeshRenderer>());
 
         quad.transform.parent = Parent;
+
+        return quad;
     }
 
 
