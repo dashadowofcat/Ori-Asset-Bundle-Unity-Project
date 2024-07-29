@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using static DamageDealerParameters;
 
 public class SplineCollider : MonoBehaviour
 {
@@ -28,7 +29,10 @@ public class SplineCollider : MonoBehaviour
     public bool IsDamageDealer;
 
     [ShowIf("IsDamageDealer")]
-    public float DamageAmount;
+    public float Damage;
+
+    [ShowIf("IsDamageDealer")]
+    public DamageDealerParameters.damageType DamageType;
 
     [Header("Save Settings")]
     public string SavePath;
@@ -53,11 +57,23 @@ public class SplineCollider : MonoBehaviour
 
             DamageDealerCondition.transform.parent = transform;
 
+
             GameObject DamageDealerAmount = new GameObject("DamageAmount");
 
             DamageDealerAmount.transform.parent = DamageDealerCondition.transform;
 
-            DamageDealerAmount.name = DamageAmount.ToString();
+            GameObject DamageAmountValue = new GameObject(Damage.ToString());
+
+            DamageAmountValue.transform.parent = DamageDealerAmount.transform;
+
+
+            GameObject DamageDealerType = new GameObject("DamageType");
+
+            DamageDealerType.transform.parent = DamageDealerCondition.transform;
+
+            GameObject DamageTypeValue = new GameObject(Enum.GetName(typeof(damageType), DamageType));
+
+            DamageTypeValue.transform.parent = DamageDealerType.transform;
         }
 
 

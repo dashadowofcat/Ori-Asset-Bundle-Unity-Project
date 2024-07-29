@@ -72,4 +72,6 @@ MonoBehaviour:
   GizmosPointSize: 0
   ColliderWidth: 1
   IsDamageDealer: 0
+  Damage: 10
+  DamageType: 3
   SavePath: 
