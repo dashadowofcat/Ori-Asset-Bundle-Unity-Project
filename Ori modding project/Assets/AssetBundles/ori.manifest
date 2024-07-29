@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1983620102
+CRC: 307439558
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 895707d477c1115c2f96dbd3acd71df4
+    Hash: aaf3f27790f64ae457b529c5068b8194
   TypeTreeHash:
     serializedVersion: 2
-    Hash: fdb1c7da2fadf4e38aa4b4f698ca31ae
+    Hash: 87c5e6df829c2e2a6920a07da2ef532c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -36,9 +36,9 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 0ef39d4d5a4b34a40ae004d449457988, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 8097235ae4c2d1f4ca787a6686e6ae23, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: ced4376c85e5bd84b992eb124fd5169b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8097235ae4c2d1f4ca787a6686e6ae23, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0317f9828d317c74fbaf3789cbe8282b, type: 3}
 - Class: 115
@@ -48,77 +48,78 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/asset bundle/art/swampGroundWoodPlankShadowD.png
-- Assets/asset bundle/cache/materials/placeholder (-4016)_Material.mat
-- Assets/asset bundle/art/swampBackgroundRockD.png
-- Assets/asset bundle/cache/materials/introSwampBackgroundTreeB (-3356)_Material.mat
-- Assets/asset bundle/cache/materials/swampMossGroundA (-8016)_Material.mat
-- Assets/asset bundle/art/swampBreakableFloorA.png
-- Assets/asset bundle/elements/DamageDealer.prefab
-- Assets/asset bundle/temp assets/Remove-bg.ai_1715943241282.png
-- Assets/asset bundle/cache/materials/Remove-bg.ai_1715943241282 (-2550)_Material.mat
-- Assets/asset bundle/art/swampBackgroundRockE.png
-- Assets/asset bundle/art/swampMossGroundA.png
-- Assets/asset bundle/temp assets/8vm0tb.jpg
-- Assets/asset bundle/cache/materials/Yellow_Orb (-2848)_Material.mat
-- Assets/asset bundle/elements/Bash.prefab
-- Assets/asset bundle/cache/materials/TriangleArrow-Up.svg (-20778)_Material.mat
-- Assets/asset bundle/art/ledgeCHigh.png
-- Assets/asset bundle/elements/Spring.prefab
-- Assets/asset bundle/art/sprite (9).png
-- Assets/asset bundle/art/sprite (13).png
-- Assets/asset bundle/art/introSwampGiantShellBSplitC.png
-- Assets/asset bundle/art/swampFirePedestalA.png
-- Assets/asset bundle/temp assets/IslandTourWaluigi.png
-- Assets/asset bundle/art/swampStatueF.png
-- Assets/asset bundle/art/sprite (5).png
-- Assets/asset bundle/elements/Leash.prefab
-- Assets/asset bundle/art/kwolokcavernStoneSpikesSheet.png
-- Assets/asset bundle/art/sprite (8).png
-- Assets/asset bundle/cache/materials/IslandTourWaluigi (-3030)_Material.mat
-- Assets/asset bundle/temp assets/New Project (2).png
-- Assets/asset bundle/cache/materials/sprite (4) (-7880)_Material.mat
-- Assets/asset bundle/art/sprite (6).png
-- Assets/asset bundle/temp assets/New Project (3).png
-- Assets/asset bundle/elements/LifePlant.prefab
-- Assets/asset bundle/art/LifePlant.png
-- Assets/asset bundle/art/introSwampHangingVineGroundA.png
-- Assets/asset bundle/cache/materials/New Project (2) (-3146)_Material.mat
-- Assets/asset bundle/cache/materials/swampBackgroundRuinsRockPieceF (-1836)_Material.mat
-- Assets/asset bundle/art/swampBackgroundRuinsRockPieceF.png
-- Assets/asset bundle/temp assets/Yellow_Orb.png
-- Assets/asset bundle/art/sprite (2).png
-- Assets/asset bundle/cache/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
-- Assets/asset bundle/cache/meshes/spline collider G2Y4A.mesh
-- Assets/asset bundle/art/introSwampGiantShellASplitC.png
-- Assets/asset bundle/art/sprite (12).png
-- Assets/asset bundle/art/sprite (10).png
-- Assets/asset bundle/art/sprite (11).png
-- Assets/asset bundle/temp assets/TriangleArrow-Up.svg.png
-- Assets/asset bundle/art/swampBreakableFloorC.png
-- Assets/asset bundle/cache/materials/New Project (3) (-3662)_Material.mat
-- Assets/asset bundle/art/introSwampBackgroundTreeB.png
-- Assets/asset bundle/temp assets/pngwing.com.png
-- Assets/asset bundle/cache/meshes/terrain collider WHRAF.mesh
-- Assets/asset bundle/art/swampBackgroundRockH.png
-- Assets/asset bundle/art/sprite (1).png
-- Assets/asset bundle/cache/materials/pngwing.com (-1734)_Material.mat
-- Assets/asset bundle/art/sprite.png
-- Assets/asset bundle/art/swampKwoloksEntranceBaseC.png
-- Assets/asset bundle/art/swampBreakableFloorF.png
-- Assets/asset bundle/art/sprite (14).png
-- Assets/asset bundle/cache/materials/Square (-2334)_Material.mat
-- Assets/asset bundle/art/sprite (3).png
-- Assets/asset bundle/elements/spline collider.prefab
-- Assets/asset bundle/cache/materials/8vm0tb (-1748)_Material.mat
-- Assets/asset bundle/art/sprite (15).png
-- Assets/asset bundle/temp assets/placeholder.png
-- Assets/asset bundle/art/swampNightcrawlerBonesC.png
-- Assets/asset bundle/prefab root.prefab
-- Assets/asset bundle/art/sprite (4).png
-- Assets/asset bundle/temp assets/Square.png
-- Assets/asset bundle/art/swampFirewoodA.png
-- Assets/asset bundle/art/sprite (7).png
-- Assets/asset bundle/cache/materials/IslandTourWaluigi (-2254)_Material.mat
-- Assets/asset bundle/art/introSwampWoodGroundBarkB.png
+- Assets/level data/art/swampGroundWoodPlankShadowD.png
+- Assets/level data/cache/materials/placeholder (-4016)_Material.mat
+- Assets/level data/art/swampBackgroundRockD.png
+- Assets/level data/cache/materials/introSwampBackgroundTreeB (-3356)_Material.mat
+- Assets/level data/cache/materials/swampMossGroundA (-8016)_Material.mat
+- Assets/level data/art/swampBreakableFloorA.png
+- Assets/level data/elements/DamageDealer.prefab
+- Assets/level data/temp assets/Remove-bg.ai_1715943241282.png
+- Assets/level data/cache/materials/Remove-bg.ai_1715943241282 (-2550)_Material.mat
+- Assets/level data/art/swampBackgroundRockE.png
+- Assets/level data/art/swampMossGroundA.png
+- Assets/level data/temp assets/8vm0tb.jpg
+- Assets/level data/cache/materials/Yellow_Orb (-2848)_Material.mat
+- Assets/level data/elements/Bash.prefab
+- Assets/level data/cache/materials/TriangleArrow-Up.svg (-20778)_Material.mat
+- Assets/level data/art/ledgeCHigh.png
+- Assets/level data/elements/Spring.prefab
+- Assets/level data/art/sprite (9).png
+- Assets/level data/art/sprite (13).png
+- Assets/level data/art/introSwampGiantShellBSplitC.png
+- Assets/level data/art/swampFirePedestalA.png
+- Assets/level data/temp assets/IslandTourWaluigi.png
+- Assets/level data/art/swampStatueF.png
+- Assets/level data/art/SpringPlant.png
+- Assets/level data/art/sprite (5).png
+- Assets/level data/elements/Leash.prefab
+- Assets/level data/art/kwolokcavernStoneSpikesSheet.png
+- Assets/level data/art/sprite (8).png
+- Assets/level data/cache/materials/IslandTourWaluigi (-3030)_Material.mat
+- Assets/level data/temp assets/New Project (2).png
+- Assets/level data/cache/materials/sprite (4) (-7880)_Material.mat
+- Assets/level data/art/sprite (6).png
+- Assets/level data/temp assets/New Project (3).png
+- Assets/level data/elements/LifePlant.prefab
+- Assets/level data/art/LifePlant.png
+- Assets/level data/art/introSwampHangingVineGroundA.png
+- Assets/level data/cache/materials/New Project (2) (-3146)_Material.mat
+- Assets/level data/cache/materials/swampBackgroundRuinsRockPieceF (-1836)_Material.mat
+- Assets/level data/art/swampBackgroundRuinsRockPieceF.png
+- Assets/level data/temp assets/Yellow_Orb.png
+- Assets/level data/art/sprite (2).png
+- Assets/level data/cache/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
+- Assets/level data/cache/meshes/spline collider G2Y4A.mesh
+- Assets/level data/art/introSwampGiantShellASplitC.png
+- Assets/level data/art/sprite (12).png
+- Assets/level data/art/sprite (10).png
+- Assets/level data/art/sprite (11).png
+- Assets/level data/temp assets/TriangleArrow-Up.svg.png
+- Assets/level data/art/swampBreakableFloorC.png
+- Assets/level data/cache/materials/New Project (3) (-3662)_Material.mat
+- Assets/level data/art/introSwampBackgroundTreeB.png
+- Assets/level data/temp assets/pngwing.com.png
+- Assets/level data/cache/meshes/terrain collider WHRAF.mesh
+- Assets/level data/art/swampBackgroundRockH.png
+- Assets/level data/art/sprite (1).png
+- Assets/level data/cache/materials/pngwing.com (-1734)_Material.mat
+- Assets/level data/art/sprite.png
+- Assets/level data/art/swampKwoloksEntranceBaseC.png
+- Assets/level data/art/swampBreakableFloorF.png
+- Assets/level data/art/sprite (14).png
+- Assets/level data/cache/materials/Square (-2334)_Material.mat
+- Assets/level data/art/sprite (3).png
+- Assets/level data/elements/spline collider.prefab
+- Assets/level data/cache/materials/8vm0tb (-1748)_Material.mat
+- Assets/level data/art/sprite (15).png
+- Assets/level data/temp assets/placeholder.png
+- Assets/level data/art/swampNightcrawlerBonesC.png
+- Assets/level data/Level.prefab
+- Assets/level data/art/sprite (4).png
+- Assets/level data/temp assets/Square.png
+- Assets/level data/art/swampFirewoodA.png
+- Assets/level data/art/sprite (7).png
+- Assets/level data/cache/materials/IslandTourWaluigi (-2254)_Material.mat
+- Assets/level data/art/introSwampWoodGroundBarkB.png
 Dependencies: []
