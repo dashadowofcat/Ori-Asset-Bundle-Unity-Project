@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ public class SplineCollider : MonoBehaviour
 
     public int SplineCount = 100;
 
-    public Color GizmosCurveColor;
+    public Color GizmosTerrainCurveColor;
+    public Color GizmosDamageCurveColor;
 
     public Color GizmosPointColor;
 
@@ -22,6 +24,11 @@ public class SplineCollider : MonoBehaviour
 
     [Header("Collision Settings")]
     public float ColliderWidth;
+
+    public bool IsDamageDealer;
+
+    [ShowIf("IsDamageDealer")]
+    public float DamageAmount;
 
     [Header("Save Settings")]
     public string SavePath;
@@ -33,10 +40,26 @@ public class SplineCollider : MonoBehaviour
         CatmullRom
     }
 
-    [NaughtyAttributes.Button(null, NaughtyAttributes.EButtonEnableMode.Editor)]
+    [Button(null, EButtonEnableMode.Editor)]
     public void GenerateCollision()
     {
         if (transform.Find("Collision") != null) DestroyImmediate(transform.Find("Collision").gameObject);
+
+        if (transform.Find("TerrainDamageDealer") != null) DestroyImmediate(transform.Find("TerrainDamageDealer").gameObject);
+
+        if (IsDamageDealer)
+        {
+            GameObject DamageDealerCondition = new GameObject("TerrainDamageDealer");
+
+            DamageDealerCondition.transform.parent = transform;
+
+            GameObject DamageDealerAmount = new GameObject("DamageAmount");
+
+            DamageDealerAmount.transform.parent = DamageDealerCondition.transform;
+
+            DamageDealerAmount.name = DamageAmount.ToString();
+        }
+
 
         Vector2[] Points = Edge.points;
 
@@ -170,7 +193,7 @@ public class SplineCollider : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = GizmosCurveColor;
+        Gizmos.color = IsDamageDealer ? GizmosDamageCurveColor : GizmosTerrainCurveColor;
 
         Vector2[] Points = Edge.points;
 

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 53299680
+CRC: 3349792656
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2003c3add0ef7305cf884febc9f599f0
+    Hash: eeb1ac2a08ffd1c14bf5b01cfd722cec
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1daf6d6c1ed01132f7933af20251b42b
+    Hash: f120d89b930e948ac3edc7f54598ef39
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -30,7 +30,11 @@ ClassTypes:
 - Class: 68
   Script: {instanceID: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: 043ef115d7a3d6a42999baea28a5ede2, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 6ed19edb566368946be289e137200329, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0ef39d4d5a4b34a40ae004d449457988, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: ced4376c85e5bd84b992eb124fd5169b, type: 3}
 - Class: 115
@@ -75,6 +79,7 @@ Assets:
 - Assets/asset bundle/temp assets/Yellow_Orb.png
 - Assets/asset bundle/art/sprite (2).png
 - Assets/asset bundle/cache/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
+- Assets/asset bundle/cache/meshes/npc damage dealer P300E.mesh
 - Assets/asset bundle/art/introSwampGiantShellASplitC.png
 - Assets/asset bundle/art/sprite (12).png
 - Assets/asset bundle/art/sprite (10).png
