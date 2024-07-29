@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 48044517
+CRC: 1983620102
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cf2338fd7403fb6b9b1e1d99677f4f8c
+    Hash: 895707d477c1115c2f96dbd3acd71df4
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9ccff60d196037f8f784ba3fc5021a19
+    Hash: fdb1c7da2fadf4e38aa4b4f698ca31ae
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -36,10 +36,14 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 0ef39d4d5a4b34a40ae004d449457988, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 8097235ae4c2d1f4ca787a6686e6ae23, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: ced4376c85e5bd84b992eb124fd5169b, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 8097235ae4c2d1f4ca787a6686e6ae23, type: 3}
+  Script: {fileID: 11500000, guid: 0317f9828d317c74fbaf3789cbe8282b, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 212
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -76,6 +80,8 @@ Assets:
 - Assets/asset bundle/cache/materials/sprite (4) (-7880)_Material.mat
 - Assets/asset bundle/art/sprite (6).png
 - Assets/asset bundle/temp assets/New Project (3).png
+- Assets/asset bundle/elements/LifePlant.prefab
+- Assets/asset bundle/art/LifePlant.png
 - Assets/asset bundle/art/introSwampHangingVineGroundA.png
 - Assets/asset bundle/cache/materials/New Project (2) (-3146)_Material.mat
 - Assets/asset bundle/cache/materials/swampBackgroundRuinsRockPieceF (-1836)_Material.mat
