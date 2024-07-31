@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 307439558
+CRC: 2479186076
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: aaf3f27790f64ae457b529c5068b8194
+    Hash: d30b8e9898adb5b54c2d84968e980921
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 87c5e6df829c2e2a6920a07da2ef532c
+    Hash: 80335a56caf2042354b4e813051ed07f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -30,17 +30,17 @@ ClassTypes:
 - Class: 68
   Script: {instanceID: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: 0317f9828d317c74fbaf3789cbe8282b, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 043ef115d7a3d6a42999baea28a5ede2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8097235ae4c2d1f4ca787a6686e6ae23, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6ed19edb566368946be289e137200329, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0ef39d4d5a4b34a40ae004d449457988, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: ced4376c85e5bd84b992eb124fd5169b, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 8097235ae4c2d1f4ca787a6686e6ae23, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 0317f9828d317c74fbaf3789cbe8282b, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -99,6 +99,7 @@ Assets:
 - Assets/level data/art/swampBreakableFloorC.png
 - Assets/level data/cache/materials/New Project (3) (-3662)_Material.mat
 - Assets/level data/art/introSwampBackgroundTreeB.png
+- Assets/level data/elements/Enemies/HornBug.prefab
 - Assets/level data/temp assets/pngwing.com.png
 - Assets/level data/cache/meshes/terrain collider WHRAF.mesh
 - Assets/level data/art/swampBackgroundRockH.png
