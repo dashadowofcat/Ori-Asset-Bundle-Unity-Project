@@ -1,4 +1,5 @@
 ManifestFileVersion: 0
+<<<<<<< Updated upstream
 CRC: 2479186076
 Hashes:
   AssetFileHash:
@@ -7,6 +8,16 @@ Hashes:
   TypeTreeHash:
     serializedVersion: 2
     Hash: 80335a56caf2042354b4e813051ed07f
+=======
+CRC: 2722227315
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5daef99a2fcbdf35a724b7ad3bdb1b58
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c04e23cd9d5df814e25fa8e2f62af651
+>>>>>>> Stashed changes
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -34,6 +45,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 043ef115d7a3d6a42999baea28a5ede2, type: 3}
 - Class: 114
+<<<<<<< Updated upstream
+=======
+  Script: {fileID: 11500000, guid: c6f641188ab57f64c93ac49d486ea226, type: 3}
+- Class: 114
+>>>>>>> Stashed changes
   Script: {fileID: 11500000, guid: 8097235ae4c2d1f4ca787a6686e6ae23, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6ed19edb566368946be289e137200329, type: 3}
@@ -41,6 +57,11 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 0ef39d4d5a4b34a40ae004d449457988, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: ced4376c85e5bd84b992eb124fd5169b, type: 3}
+<<<<<<< Updated upstream
+=======
+- Class: 114
+  Script: {fileID: 11500000, guid: e70e785980ec52647a37c1bbba9fbf8f, type: 3}
+>>>>>>> Stashed changes
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -49,13 +70,17 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/level data/art/swampGroundWoodPlankShadowD.png
+- Assets/level data/element icons/Skeeto.png
 - Assets/level data/cache/materials/placeholder (-4016)_Material.mat
 - Assets/level data/art/swampBackgroundRockD.png
+- Assets/level data/elements/Mantis.prefab
+- Assets/level data/element icons/SkeetoHive.png
 - Assets/level data/cache/materials/introSwampBackgroundTreeB (-3356)_Material.mat
 - Assets/level data/cache/materials/swampMossGroundA (-8016)_Material.mat
 - Assets/level data/art/swampBreakableFloorA.png
 - Assets/level data/elements/DamageDealer.prefab
 - Assets/level data/temp assets/Remove-bg.ai_1715943241282.png
+- Assets/level data/element icons/mantis.png
 - Assets/level data/cache/materials/Remove-bg.ai_1715943241282 (-2550)_Material.mat
 - Assets/level data/art/swampBackgroundRockE.png
 - Assets/level data/art/swampMossGroundA.png
@@ -71,25 +96,30 @@ Assets:
 - Assets/level data/art/swampFirePedestalA.png
 - Assets/level data/temp assets/IslandTourWaluigi.png
 - Assets/level data/art/swampStatueF.png
-- Assets/level data/art/SpringPlant.png
+- Assets/level data/element icons/SpringPlant.png
 - Assets/level data/art/sprite (5).png
 - Assets/level data/elements/Leash.prefab
 - Assets/level data/art/kwolokcavernStoneSpikesSheet.png
 - Assets/level data/art/sprite (8).png
 - Assets/level data/cache/materials/IslandTourWaluigi (-3030)_Material.mat
 - Assets/level data/temp assets/New Project (2).png
+- Assets/level data/element icons/yellowMantis.png
 - Assets/level data/cache/materials/sprite (4) (-7880)_Material.mat
 - Assets/level data/art/sprite (6).png
+- Assets/level data/element icons/HornBug.png
 - Assets/level data/temp assets/New Project (3).png
 - Assets/level data/elements/LifePlant.prefab
-- Assets/level data/art/LifePlant.png
+- Assets/level data/element icons/LifePlant.png
 - Assets/level data/art/introSwampHangingVineGroundA.png
 - Assets/level data/cache/materials/New Project (2) (-3146)_Material.mat
+- Assets/level data/element icons/greenMantis.png
 - Assets/level data/cache/materials/swampBackgroundRuinsRockPieceF (-1836)_Material.mat
 - Assets/level data/art/swampBackgroundRuinsRockPieceF.png
 - Assets/level data/temp assets/Yellow_Orb.png
 - Assets/level data/art/sprite (2).png
 - Assets/level data/cache/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
+- Assets/level data/elements/HornBug.prefab
+- Assets/level data/element icons/NakedBug.png
 - Assets/level data/cache/meshes/spline collider G2Y4A.mesh
 - Assets/level data/art/introSwampGiantShellASplitC.png
 - Assets/level data/art/sprite (12).png
