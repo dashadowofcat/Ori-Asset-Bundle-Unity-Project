@@ -1,23 +1,12 @@
 ManifestFileVersion: 0
-<<<<<<< Updated upstream
-CRC: 2479186076
+CRC: 2418276920
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d30b8e9898adb5b54c2d84968e980921
+    Hash: d809df5d890f118872b59d661910c24e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 80335a56caf2042354b4e813051ed07f
-=======
-CRC: 2722227315
-Hashes:
-  AssetFileHash:
-    serializedVersion: 2
-    Hash: 5daef99a2fcbdf35a724b7ad3bdb1b58
-  TypeTreeHash:
-    serializedVersion: 2
-    Hash: c04e23cd9d5df814e25fa8e2f62af651
->>>>>>> Stashed changes
+    Hash: 463cff954d6c5afed9a83b81df737417
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -45,23 +34,15 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 043ef115d7a3d6a42999baea28a5ede2, type: 3}
 - Class: 114
-<<<<<<< Updated upstream
-=======
   Script: {fileID: 11500000, guid: c6f641188ab57f64c93ac49d486ea226, type: 3}
 - Class: 114
->>>>>>> Stashed changes
+  Script: {fileID: 11500000, guid: e70e785980ec52647a37c1bbba9fbf8f, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 8097235ae4c2d1f4ca787a6686e6ae23, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6ed19edb566368946be289e137200329, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0ef39d4d5a4b34a40ae004d449457988, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: ced4376c85e5bd84b992eb124fd5169b, type: 3}
-<<<<<<< Updated upstream
-=======
-- Class: 114
-  Script: {fileID: 11500000, guid: e70e785980ec52647a37c1bbba9fbf8f, type: 3}
->>>>>>> Stashed changes
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -129,7 +110,6 @@ Assets:
 - Assets/level data/art/swampBreakableFloorC.png
 - Assets/level data/cache/materials/New Project (3) (-3662)_Material.mat
 - Assets/level data/art/introSwampBackgroundTreeB.png
-- Assets/level data/elements/Enemies/HornBug.prefab
 - Assets/level data/temp assets/pngwing.com.png
 - Assets/level data/cache/meshes/terrain collider WHRAF.mesh
 - Assets/level data/art/swampBackgroundRockH.png

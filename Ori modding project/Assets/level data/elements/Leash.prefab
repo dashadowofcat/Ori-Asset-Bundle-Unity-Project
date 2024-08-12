@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7195981175676081078}
-  - component: {fileID: 8734430292581223088}
+  - component: {fileID: 5545527794608938678}
   m_Layer: 0
   m_Name: Leash
   m_TagString: Untagged
@@ -93,7 +93,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8734430292581223088
+--- !u!114 &5545527794608938678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,9 +102,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7195981175676081079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced4376c85e5bd84b992eb124fd5169b, type: 3}
+  m_Script: {fileID: 11500000, guid: 043ef115d7a3d6a42999baea28a5ede2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Parameters:
-  - Name: Sticky
-    Value: false
+  IsSticky: 0
