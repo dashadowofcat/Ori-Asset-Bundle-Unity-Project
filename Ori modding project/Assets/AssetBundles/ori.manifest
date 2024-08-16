@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2418276920
+CRC: 559131483
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d809df5d890f118872b59d661910c24e
+    Hash: ab57af1e2516162c8b4172a19d40ad07
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 463cff954d6c5afed9a83b81df737417
+    Hash: 2c597f37ab9a934b0e055f7cf0dc9b6e
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -27,12 +27,16 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 64
   Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
 - Class: 68
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 0317f9828d317c74fbaf3789cbe8282b, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 043ef115d7a3d6a42999baea28a5ede2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c410f5077799504468d59f4464713e14, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c6f641188ab57f64c93ac49d486ea226, type: 3}
 - Class: 114
@@ -72,8 +76,10 @@ Assets:
 - Assets/level data/art/ledgeCHigh.png
 - Assets/level data/elements/Spring.prefab
 - Assets/level data/art/sprite (9).png
+- Assets/level data/art/kwoloksHollowTexturesUberScreenAtlas6.png
 - Assets/level data/art/sprite (13).png
 - Assets/level data/art/introSwampGiantShellBSplitC.png
+- Assets/level data/cache/meshes/spline collider 1G4KH.mesh
 - Assets/level data/art/swampFirePedestalA.png
 - Assets/level data/temp assets/IslandTourWaluigi.png
 - Assets/level data/art/swampStatueF.png
@@ -89,6 +95,7 @@ Assets:
 - Assets/level data/art/sprite (6).png
 - Assets/level data/element icons/HornBug.png
 - Assets/level data/temp assets/New Project (3).png
+- Assets/level data/cache/meshes/terrain collider ZDKDW.mesh
 - Assets/level data/elements/LifePlant.prefab
 - Assets/level data/element icons/LifePlant.png
 - Assets/level data/art/introSwampHangingVineGroundA.png
@@ -98,20 +105,20 @@ Assets:
 - Assets/level data/art/swampBackgroundRuinsRockPieceF.png
 - Assets/level data/temp assets/Yellow_Orb.png
 - Assets/level data/art/sprite (2).png
+- Assets/level data/cache/materials/Square (-7062)_Material.mat
 - Assets/level data/cache/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
 - Assets/level data/elements/HornBug.prefab
 - Assets/level data/element icons/NakedBug.png
-- Assets/level data/cache/meshes/spline collider G2Y4A.mesh
 - Assets/level data/art/introSwampGiantShellASplitC.png
 - Assets/level data/art/sprite (12).png
 - Assets/level data/art/sprite (10).png
 - Assets/level data/art/sprite (11).png
 - Assets/level data/temp assets/TriangleArrow-Up.svg.png
+- Assets/level data/elements/AutoRotate.prefab
 - Assets/level data/art/swampBreakableFloorC.png
 - Assets/level data/cache/materials/New Project (3) (-3662)_Material.mat
 - Assets/level data/art/introSwampBackgroundTreeB.png
 - Assets/level data/temp assets/pngwing.com.png
-- Assets/level data/cache/meshes/terrain collider WHRAF.mesh
 - Assets/level data/art/swampBackgroundRockH.png
 - Assets/level data/art/sprite (1).png
 - Assets/level data/cache/materials/pngwing.com (-1734)_Material.mat

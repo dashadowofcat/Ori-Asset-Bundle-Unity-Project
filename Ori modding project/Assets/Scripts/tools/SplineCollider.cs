@@ -104,6 +104,8 @@ public class SplineCollider : MonoBehaviour
 
         GameObject ColliderGameObject = new GameObject("Collision");
 
+        ColliderGameObject.layer = 10;
+
         ColliderGameObject.transform.parent = transform;
 
         List<MeshFilter> ColliderMeshes = new List<MeshFilter>();
@@ -162,16 +164,23 @@ public class SplineCollider : MonoBehaviour
         }
     }
 
+    [Button("Generate Path" , EButtonEnableMode.Editor)]
+    void RegeneratePath()
+    {
+        SavePath = string.Empty;
+        GenerateSavePath();
+    }
+
     void GenerateSavePath()
     {
         if (SavePath == string.Empty)
         {
-            SavePath = $"Assets/asset bundle/cache/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
+            SavePath = $"Assets/level data/cache/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
 
 #if UNITY_EDITOR
             while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(SavePath)))
             {
-                SavePath = $"Assets/asset bundle/cache/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
+                SavePath = $"Assets/level data/cache/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
             }
 #endif
         }
