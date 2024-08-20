@@ -143,6 +143,8 @@ public class SplineCollider : MonoBehaviour
 
         GenerateSavePath();
 
+        ColliderGameObject.transform.position = new Vector3(ColliderGameObject.transform.position.x, ColliderGameObject.transform.position.y, 1);
+
 #if UNITY_EDITOR
         AssetDatabase.CreateAsset(mesh, SavePath);
         AssetDatabase.SaveAssets();

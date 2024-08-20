@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 559131483
+CRC: 3658751447
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ab57af1e2516162c8b4172a19d40ad07
+    Hash: e248eed392aec01a09920dca02b0020d
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2c597f37ab9a934b0e055f7cf0dc9b6e
@@ -79,7 +79,6 @@ Assets:
 - Assets/level data/art/kwoloksHollowTexturesUberScreenAtlas6.png
 - Assets/level data/art/sprite (13).png
 - Assets/level data/art/introSwampGiantShellBSplitC.png
-- Assets/level data/cache/meshes/spline collider 1G4KH.mesh
 - Assets/level data/art/swampFirePedestalA.png
 - Assets/level data/temp assets/IslandTourWaluigi.png
 - Assets/level data/art/swampStatueF.png
@@ -126,6 +125,8 @@ Assets:
 - Assets/level data/art/swampKwoloksEntranceBaseC.png
 - Assets/level data/art/swampBreakableFloorF.png
 - Assets/level data/art/sprite (14).png
+- Assets/level data/elements/SpawnPosition.prefab
+- Assets/level data/cache/meshes/spike collider 00TRG.mesh
 - Assets/level data/cache/materials/Square (-2334)_Material.mat
 - Assets/level data/art/sprite (3).png
 - Assets/level data/elements/spline collider.prefab
