@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1469459424
+CRC: 1238416475
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3bb6458a5b2e380305817eb649205660
+    Hash: 143546e07aae11384be60766300152fa
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 2c597f37ab9a934b0e055f7cf0dc9b6e
+    Hash: c00713064704123fdbad18b22ed558a6
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -36,17 +36,17 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 043ef115d7a3d6a42999baea28a5ede2, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: c410f5077799504468d59f4464713e14, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: c6f641188ab57f64c93ac49d486ea226, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: e70e785980ec52647a37c1bbba9fbf8f, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 8097235ae4c2d1f4ca787a6686e6ae23, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6ed19edb566368946be289e137200329, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0ef39d4d5a4b34a40ae004d449457988, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c410f5077799504468d59f4464713e14, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c6f641188ab57f64c93ac49d486ea226, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e70e785980ec52647a37c1bbba9fbf8f, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -108,6 +108,7 @@ Assets:
 - Assets/level data/cache/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
 - Assets/level data/elements/HornBug.prefab
 - Assets/level data/element icons/NakedBug.png
+- Assets/level data/cache/materials/mantis (-15864)_Material.mat
 - Assets/level data/art/introSwampGiantShellASplitC.png
 - Assets/level data/art/sprite (12).png
 - Assets/level data/art/sprite (10).png
@@ -125,6 +126,7 @@ Assets:
 - Assets/level data/art/swampKwoloksEntranceBaseC.png
 - Assets/level data/art/swampBreakableFloorF.png
 - Assets/level data/art/sprite (14).png
+- Assets/level data/elements/Keystone.prefab
 - Assets/level data/elements/SpawnPosition.prefab
 - Assets/level data/cache/meshes/spike collider 00TRG.mesh
 - Assets/level data/cache/materials/Square (-2334)_Material.mat
@@ -137,6 +139,7 @@ Assets:
 - Assets/level data/Level.prefab
 - Assets/level data/art/sprite (4).png
 - Assets/level data/temp assets/Square.png
+- Assets/level data/element icons/Keystone.png
 - Assets/level data/art/swampFirewoodA.png
 - Assets/level data/art/sprite (7).png
 - Assets/level data/cache/materials/IslandTourWaluigi (-2254)_Material.mat
