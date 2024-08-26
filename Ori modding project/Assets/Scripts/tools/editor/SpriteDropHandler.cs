@@ -13,25 +13,33 @@ public class SpriteDropHandler : MonoBehaviour
 
     private static void OnSceneGUI(SceneView sceneView)
     {
-        Event Event = Event.current;
 
+        Event Event = Event.current;
+        
         if (Event.type == EventType.DragPerform)
         {
+
+            
             DragAndDrop.AcceptDrag();
 
+            
             foreach (Object draggedObject in DragAndDrop.objectReferences)
             {
+                
                 if (draggedObject is Sprite sprite)
                 {
 
                     Vector3 mousePosition = HandleUtility.GUIPointToWorldRay(Event.mousePosition).origin;
 
                     ConvertTo3DPlane(sprite.texture, mousePosition);
-                }
-            }
 
-            Event.Use();
+                    Event.Use();
+                }
+                
+            }
+            
         }
+        
     }
 
     private static void ConvertTo3DPlane(Texture2D texture, Vector3 position)
@@ -44,7 +52,7 @@ public class SpriteDropHandler : MonoBehaviour
         Material spriteMaterial = new Material(Shader.Find("Sprites/Default"));
         spriteMaterial.mainTexture = texture;
 
-        string materialFolderPath = "Assets/level data/cache/materials";
+        string materialFolderPath = "Assets/level data/Resources/materials";
         string materialPath = $"{materialFolderPath}/{texture.name} ({plane.GetInstanceID()})_Material.mat";
         AssetDatabase.CreateAsset(spriteMaterial, materialPath);
         AssetDatabase.SaveAssets();

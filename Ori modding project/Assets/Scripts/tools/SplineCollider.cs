@@ -9,6 +9,7 @@ using static DamageDealerParameters;
 
 public class SplineCollider : MonoBehaviour
 {
+
     public EdgeCollider2D Edge;
 
     [Header("Spline")]
@@ -143,8 +144,6 @@ public class SplineCollider : MonoBehaviour
 
         GenerateSavePath();
 
-        ColliderGameObject.transform.position = new Vector3(ColliderGameObject.transform.position.x, ColliderGameObject.transform.position.y, 1);
-
 #if UNITY_EDITOR
         AssetDatabase.CreateAsset(mesh, SavePath);
         AssetDatabase.SaveAssets();
@@ -152,9 +151,11 @@ public class SplineCollider : MonoBehaviour
     }
 
 
-    [NaughtyAttributes.Button(null, NaughtyAttributes.EButtonEnableMode.Editor)]
+    [Button(null, EButtonEnableMode.Editor)]
     public void RemoveCollision()
     {
+        if (transform.Find("TerrainDamageDealer") != null) DestroyImmediate(transform.Find("TerrainDamageDealer").gameObject);
+
         if (transform.Find("Collision") != null)
         {
             DestroyImmediate(transform.Find("Collision").gameObject);
@@ -177,12 +178,12 @@ public class SplineCollider : MonoBehaviour
     {
         if (SavePath == string.Empty)
         {
-            SavePath = $"Assets/level data/cache/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
+            SavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
 
 #if UNITY_EDITOR
             while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(SavePath)))
             {
-                SavePath = $"Assets/level data/cache/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
+                SavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
             }
 #endif
         }
@@ -211,11 +212,6 @@ public class SplineCollider : MonoBehaviour
         quad.transform.parent = Parent;
 
         return quad;
-    }
-
-    void Reset()
-    {
-        Edge = GetComponent<EdgeCollider2D>();
     }
 
     void OnDrawGizmosSelected()
@@ -267,8 +263,7 @@ public class SplineCollider : MonoBehaviour
 
         string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-        return new string(Enumerable.Repeat(chars, Length)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
+        return new string(Enumerable.Repeat(chars, Length).Select(s => s[random.Next(s.Length)]).ToArray());
     }
 
 

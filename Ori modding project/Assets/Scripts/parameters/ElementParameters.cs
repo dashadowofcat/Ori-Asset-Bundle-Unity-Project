@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ElementParameter : MonoBehaviour
 {
+
     public void SetString(string PropertyName, string Value)
     {
         transform.Find(PropertyName).GetChild(0).name = Value;

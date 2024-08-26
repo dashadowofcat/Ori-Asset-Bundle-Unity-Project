@@ -7,7 +7,7 @@ public class AssetBundleBuilder : MonoBehaviour
     [MenuItem("Assets/Build AssetBundles")]
     static void BuildAllAssetBundles()
     {
-        string assetBundleDirectory = "Assets/AssetBundles";
+        string assetBundleDirectory = "Assets/Output";
 
         
         if (!Directory.Exists(assetBundleDirectory))
