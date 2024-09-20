@@ -26,7 +26,6 @@ public class PolygonEditor : Editor
 {
     public void OnSceneGUI()
     {
-
         Polygon polygon = (Polygon)target;
 
         Handles.color = new Color(1, 1, 1, 0);
