@@ -4,7 +4,6 @@ using UnityEngine;
 using NaughtyAttributes;
 
 [ExecuteInEditMode]
-
 public class LifePlantParameters : ElementParameter
 {
     public int IdealOrbs;
