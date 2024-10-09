@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2280154666233819433}
   m_Layer: 0
-  m_Name: 0
+  m_Name: -1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1713980914889932133}
   m_Layer: 0
-  m_Name: 0
+  m_Name: -1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -300,14 +300,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a31ef57c54c8e468144bc8a1993bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnOnScreen: 0
-  RespawnTime: 0
-  MaxHealth: 0
-  MaxSensorRadius: 0
-  LoseSightRadius: 0
-  ShouldSpawnLoot: 0
-  EnergyOrbsNumber: 0
-  HealthOrbsNumber: 0
+  RespawnOnScreen: 1
+  RespawnTime: -1
+  MaxHealth: -1
+  MaxSensorRadius: -1
+  LoseSightRadius: -1
+  ShouldSpawnLoot: 1
+  EnergyOrbsNumber: -1
+  HealthOrbsNumber: -1
   SpawnsExpOrbs: 0
   ExpOrbsNumber: 0
 --- !u!1 &2289168625274616683
@@ -521,7 +521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 98115314158996881}
   m_Layer: 0
-  m_Name: 0
+  m_Name: -1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,7 +734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5364458301550784781}
   m_Layer: 0
-  m_Name: false
+  m_Name: true
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,7 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 571631940814826242}
   m_Layer: 0
-  m_Name: 0
+  m_Name: -1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
