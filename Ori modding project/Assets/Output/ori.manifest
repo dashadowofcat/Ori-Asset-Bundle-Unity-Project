@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3584376604
+CRC: 106159646
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8c001a25eae93b158737b7796772eb34
+    Hash: f07c8c5f65dc0273343a87b9b31d40ac
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 236ea3f37eeae1ba18d8a7722d53ba1a
+    Hash: e65a076a978e2327964de44babe759a8
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -57,6 +57,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: ef07e61d122fe3a48b8c26a7c87551e0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0ef39d4d5a4b34a40ae004d449457988, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7979b27e49a2fbb4a9779cb0f60a5796, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -181,8 +183,10 @@ Assets:
 - Assets/level data/Resources/materials/8vm0tb (-1748)_Material.mat
 - Assets/level data/art/sprite (15).png
 - Assets/level data/temp assets/placeholder.png
+- Assets/level data/element icons/Slug.png
 - Assets/level data/elements/Polygon Renderer.prefab
 - Assets/level data/art/swampNightcrawlerBonesC.png
+- Assets/level data/elements/Slime.prefab
 - Assets/level data/art/sprite (4).png
 - Assets/level data/Resources/materials/kwolokcavernStoneSpikesSheet (-10934)_Material.mat
 - Assets/level data/temp assets/Square.png
