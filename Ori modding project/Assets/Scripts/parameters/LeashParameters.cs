@@ -1,14 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using NaughtyAttributes;
+using System;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class LeashParameters : ElementParameter
 {
-    public bool IsSticky;
+    public hookType HookType;
+
+    [Foldout("Editor Sprites")]
+    public GameObject FlingLeashSprite;
+    [Foldout("Editor Sprites")]
+    public GameObject StickyLeashSprite;
 
     void Update()
     {
-        SetBool("Sticky", IsSticky);
+        SetString("HookType", Enum.GetName(typeof(hookType), HookType));
+
+        FlingLeashSprite.SetActive(HookType == hookType.Fling);
+        StickyLeashSprite.SetActive(HookType == hookType.Sticky);
+    }
+
+    public enum hookType
+    {
+        Sticky,
+        Fling
     }
 }
