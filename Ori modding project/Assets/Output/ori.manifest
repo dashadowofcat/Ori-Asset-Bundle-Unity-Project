@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4136847941
+CRC: 1656454506
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 36ffe96f27a4193a1dc23d0877677e5b
+    Hash: 663d6782c268fea152b500c246ba52f8
   TypeTreeHash:
     serializedVersion: 2
-    Hash: d0a1d49427cc1d18c3d919b91edbf086
+    Hash: 9d7373acee7123368d1ed1d8be51e76f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -138,6 +138,7 @@ Assets:
 - Assets/level data/art/sprite (2).png
 - Assets/level data/Resources/materials/Square (-7062)_Material.mat
 - Assets/level data/Resources/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
+- Assets/level data/element icons/grapplebulb.png
 - Assets/level data/elements/HornBug.prefab
 - Assets/level data/element icons/NakedBug.png
 - Assets/level data/Resources/materials/mantis (-15864)_Material.mat
@@ -160,6 +161,7 @@ Assets:
 - Assets/level data/temp assets/pngwing.com.png
 - Assets/level data/Resources/materials/Polygon Renderer (1) B36TK.mat
 - Assets/level data/art/swampBackgroundRockH.png
+- Assets/level data/element icons/grappleflower.png
 - Assets/level data/art/sprite (1).png
 - Assets/level data/Resources/materials/pngwing.com (-1734)_Material.mat
 - Assets/level data/Resources/meshes/Polygon Renderer (6) WFLTP.mesh
