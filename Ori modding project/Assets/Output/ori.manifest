@@ -1,4 +1,5 @@
 ManifestFileVersion: 0
+<<<<<<< Updated upstream
 CRC: 2531927706
 Hashes:
   AssetFileHash:
@@ -7,6 +8,16 @@ Hashes:
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9d7373acee7123368d1ed1d8be51e76f
+=======
+CRC: 2250323107
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ae7e227d8e148f65f63f7dda9b659e23
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 629db7fa63822dac585fb54829a9823f
+>>>>>>> Stashed changes
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -46,6 +57,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: c6f641188ab57f64c93ac49d486ea226, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 3fddd788b30c67345bfeed0ef5a6c6c2, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 1c419fe80cceddb498bad7771652ab3a, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: e70e785980ec52647a37c1bbba9fbf8f, type: 3}
@@ -68,6 +81,7 @@ ClassTypes:
 Assets:
 - Assets/level data/art/swampGroundWoodPlankShadowD.png
 - Assets/level data/Level.prefab
+- Assets/level data/element icons/EnergyPlant.png
 - Assets/level data/element icons/Skeeto.png
 - Assets/level data/Resources/meshes/Polygon Renderer (5) OW82E.mesh
 - Assets/level data/Resources/meshes/terrain collider (2) WMGNJ.mesh
@@ -142,8 +156,12 @@ Assets:
 - Assets/level data/Resources/materials/Grid.mat
 - Assets/level data/Resources/materials/swampBackgroundRuinsRockPieceF (-7230)_Material.mat
 - Assets/level data/element icons/grapplebulb.png
+<<<<<<< Updated upstream
 - Assets/level data/TestLevel.prefab
 - Assets/level data/Resources/elements/HornBug.prefab
+=======
+- Assets/level data/elements/HornBug.prefab
+>>>>>>> Stashed changes
 - Assets/level data/element icons/NakedBug.png
 - Assets/level data/Resources/materials/Polygon Renderer EDDIN.mat
 - Assets/level data/Resources/materials/mantis (-15864)_Material.mat
@@ -164,6 +182,7 @@ Assets:
 - Assets/level data/Resources/elements/Polygon Collider.prefab
 - Assets/level data/art/introSwampBackgroundTreeB.png
 - Assets/level data/temp assets/pngwing.com.png
+- Assets/level data/elements/Energy Plant.prefab
 - Assets/level data/Resources/materials/Polygon Renderer (1) B36TK.mat
 - Assets/level data/art/swampBackgroundRockH.png
 - Assets/level data/element icons/grappleflower.png
