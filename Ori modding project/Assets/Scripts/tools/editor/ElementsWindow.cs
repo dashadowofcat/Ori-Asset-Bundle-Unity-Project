@@ -31,7 +31,7 @@ public class ElementsWindow : EditorWindow
 
     private static void Setup()
     {
-        string[] prefabGUIDs = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/level data/elements" });
+        string[] prefabGUIDs = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/level data/Resources/elements" });
         prefabs = new GameObject[prefabGUIDs.Length];
 
         for (int i = 0; i < prefabGUIDs.Length; i++)
