@@ -18,4 +18,4 @@ public class AssetBundleBuilder : MonoBehaviour
         BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.UncompressedAssetBundle, BuildTarget.StandaloneWindows);
         
     }
-}
+}; 
