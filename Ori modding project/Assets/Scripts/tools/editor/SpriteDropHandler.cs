@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.Experimental.SceneManagement;
 
 [InitializeOnLoad]
 public class SpriteDropHandler : MonoBehaviour
@@ -45,6 +46,10 @@ public class SpriteDropHandler : MonoBehaviour
     private static void ConvertTo3DPlane(Texture2D texture, Vector3 position)
     {
         GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+
+        if (PrefabStageUtility.GetCurrentPrefabStage() != null) plane.transform.parent = PrefabStageUtility.GetCurrentPrefabStage().prefabContentsRoot.transform;
+
+
         Renderer renderer = plane.GetComponent<Renderer>();
 
         DestroyImmediate(plane.GetComponent<MeshCollider>());

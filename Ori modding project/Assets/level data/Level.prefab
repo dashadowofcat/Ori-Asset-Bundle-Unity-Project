@@ -1963,24 +1963,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6393743965949966356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8304668356731905932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27dfd0e55167d674ba3a7f73df0e4c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Polygon: {fileID: 3077734319578297978}
-  ColliderWidth: 1
-  IsDamageDealer: 0
-  Damage: 0
-  DamageType: 0
-  SavePath: Assets/level data/Resources/meshes/Polygon Renderer 39T58.mesh
 --- !u!1 &6339105748179257484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,6 +2695,24 @@ Transform:
   m_Father: {fileID: 1347847021615528679}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6393743965949966356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304668356731905932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27dfd0e55167d674ba3a7f73df0e4c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Polygon: {fileID: 3077734319578297978}
+  ColliderWidth: 1
+  IsDamageDealer: 0
+  Damage: 0
+  DamageType: 0
+  SavePath: Assets/level data/Resources/meshes/Polygon Renderer 39T58.mesh
 --- !u!1 &8333699396895618171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3203,12 +3203,12 @@ PrefabInstance:
     - target: {fileID: 2905540943672029193, guid: 0961872204329364095578d5e6ed7d64,
         type: 3}
       propertyPath: Title
-      value: Set Dressing Test
+      value: Very Very Very Very Very Very Very Very Very Long Title
       objectReference: {fileID: 0}
     - target: {fileID: 2905540944555598058, guid: 0961872204329364095578d5e6ed7d64,
         type: 3}
       propertyPath: m_Name
-      value: Set Dressing Test
+      value: Very Very Very Very Very Very Very Very Very Long Title
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0961872204329364095578d5e6ed7d64, type: 3}
@@ -3752,12 +3752,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19b05a6ea6b153241b4cc808ec986fd2, type: 3}
---- !u!4 &6819619459551978683 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4539397561593780800, guid: 19b05a6ea6b153241b4cc808ec986fd2,
-    type: 3}
-  m_PrefabInstance: {fileID: 5987985608818089558}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3077734319578297978 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1055982452948223784, guid: 19b05a6ea6b153241b4cc808ec986fd2,
@@ -3770,6 +3764,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb8c462e606d7340a2778611af832a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &6819619459551978683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4539397561593780800, guid: 19b05a6ea6b153241b4cc808ec986fd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5987985608818089558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8304668356731905932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4539397561593780813, guid: 19b05a6ea6b153241b4cc808ec986fd2,
