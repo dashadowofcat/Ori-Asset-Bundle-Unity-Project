@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1589419147
+CRC: 1304724080
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5f01780a70d006e7a29b5ae7e854a9c1
+    Hash: b7bc883fba07c4298ae82bb576937fb1
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 629db7fa63822dac585fb54829a9823f
+    Hash: ea0677e6a833dd4e8857f190910a6790
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -61,6 +61,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 0ef39d4d5a4b34a40ae004d449457988, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 7979b27e49a2fbb4a9779cb0f60a5796, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ddc132a5e75fe1442a37645d235d5e71, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -70,6 +72,7 @@ ClassTypes:
 Assets:
 - Assets/level data/art/Trees/swampGroundWoodPlankShadowD.png
 - Assets/level data/Resources/materials/swampBackgroundRockD (-7616)_Material.mat
+- Assets/level data/Resources/meshes/Polygon Renderer (5) C6MK6.mesh
 - Assets/level data/art/Trees/woodArch.png
 - Assets/level data/Resources/materials/treeBark (-3450)_Material.mat
 - Assets/level data/Resources/materials/introSwampWoodGroundBarkB (-9458)_Material.mat
@@ -84,10 +87,12 @@ Assets:
 - Assets/level data/Resources/materials/snowMountainsBG (-4810)_Material.mat
 - Assets/level data/Resources/materials/swampBackgroundRockD (-11820)_Material.mat
 - Assets/level data/art/Rocks/rockSlab2.png
+- Assets/level data/Resources/meshes/Polygon Renderer (8) ER0Q3.mesh
 - Assets/level data/art/Rocks/swampBackgroundRockD.png
 - Assets/level data/Resources/materials/snowMountainsBG (-3056)_Material.mat
 - Assets/level data/Resources/materials/Polygon Renderer R9MPR.mat
 - Assets/level data/Resources/elements/Mantis.prefab
+- Assets/level data/Resources/materials/Polygon Renderer (3) 4V8KM.mat
 - Assets/level data/element icons/SkeetoHive.png
 - Assets/level data/Resources/materials/introSwampBackgroundTreeB (-3356)_Material.mat
 - Assets/level data/Resources/materials/swampMossGroundA (-8016)_Material.mat
@@ -97,17 +102,24 @@ Assets:
 - Assets/level data/element icons/mantis.png
 - Assets/level data/Resources/materials/Remove-bg.ai_1715943241282 (-2550)_Material.mat
 - Assets/level data/Resources/materials/kwolokcavernStoneSpikesSheet (-5252)_Material.mat
+- Assets/level data/Resources/meshes/Spikes (2) 3A3MZ.mesh
+- Assets/level data/Resources/meshes/Polygon Renderer (3) 4V8KM.mesh
 - Assets/level data/Resources/elements/Mortar.prefab
 - Assets/level data/art/Rocks/swampBackgroundRockE.png
 - Assets/level data/art/Foliage/swampMossGroundA.png
 - Assets/level data/Resources/materials/horizontal rock (-11768)_Material.mat
 - Assets/level data/art/Trees/treeDeadStump.png
+- Assets/level data/Resources/elements/Level Title.prefab
+- Assets/level data/Resources/meshes/Polygon Renderer (6) GMVI0.mesh
 - Assets/level data/Resources/materials/swampBreakableFloorF (-7806)_Material.mat
 - Assets/level data/art/Foliage/mushroomBlueSmall.png
+- Assets/level data/Resources/materials/Polygon Renderer Z3C3Z.mat
 - Assets/level data/art/Rocks/boulder.png
 - Assets/level data/Resources/materials/Yellow_Orb (-2848)_Material.mat
 - Assets/level data/Resources/meshes/Polygon Renderer (2) 7LGEA.mesh
+- Assets/level data/Resources/meshes/Spikes WB8OV.mesh
 - Assets/level data/art/Wood Structures/woodPoleShort.png
+- Assets/level data/Resources/meshes/Spikes (3) R0809.mesh
 - Assets/level data/Resources/elements/Bash.prefab
 - Assets/level data/Resources/meshes/Polygon Renderer (2) UQ9AB.mesh
 - Assets/level data/art/Rocks/rockFormation2.png
@@ -115,9 +127,11 @@ Assets:
 - Assets/level data/Resources/materials/TriangleArrow-Up.svg (-20778)_Material.mat
 - Assets/level data/art/Wood/ledgeCHigh.png
 - Assets/level data/Resources/elements/Spring.prefab
+- Assets/level data/Resources/materials/Polygon Renderer (4) Z5A0K.mat
 - Assets/level data/art/Trees/background statues.png
 - Assets/level data/Resources/meshes/Polygon Renderer (1) BMLDS.mesh
 - Assets/level data/element icons/YellowLeaper.png
+- Assets/level data/Resources/meshes/Polygon Collider KDAZT.mesh
 - Assets/level data/Resources/materials/Polygon Renderer (1) BMLDS.mat
 - Assets/level data/art/Wood/woodShape.png
 - Assets/level data/Resources/materials/introSwampGiantShellBSplitC (-6806)_Material.mat
@@ -129,14 +143,20 @@ Assets:
 - Assets/level data/Resources/meshes/terrain collider (3) A6S9L.mesh
 - Assets/level data/art/Wood/introSwampGiantShellBSplitC.png
 - Assets/level data/Resources/materials/circle gradient (-23164)_Material.mat
+- Assets/level data/Resources/materials/Polygon Renderer (7) 3FSH2.mat
 - Assets/level data/Resources/materials/swampBackgroundRuinsRockPieceF (-10686)_Material.mat
+- Assets/level data/Resources/meshes/Polygon Renderer (2) OD7P1.mesh
 - Assets/level data/art/Wood Structures/woodRocksLedgeShort.png
+- Assets/level data/Resources/meshes/Polygon Renderer (1) Q9COL.mesh
 - Assets/level data/Resources/materials/circle gradient (-31014)_Material.mat
 - Assets/level data/Resources/materials/sprite (3) (-6704)_Material.mat
 - Assets/level data/art/Props/swampFirePedestalA.png
 - Assets/level data/art/Wood Structures/woodRocksRamp.png
 - Assets/level data/Resources/meshes/Polygon Renderer (4) J1W3W.mesh
 - Assets/level data/art/Wood Structures/vertical wood platform.png
+- Assets/level data/Resources/materials/Polygon Renderer (1) V8DRS.mat
+- Assets/level data/Resources/meshes/Polygon Renderer (9) 80AI7.mesh
+- Assets/level data/Resources/materials/Polygon Renderer (5) VTB0G.mat
 - Assets/level data/Resources/materials/root rock (-5224)_Material.mat
 - Assets/level data/Resources/materials/sprite (8) (-4416)_Material.mat
 - Assets/level data/Resources/materials/rockCieling (-32620)_Material.mat
@@ -144,6 +164,9 @@ Assets:
 - Assets/level data/art/Rocks/rocks.png
 - Assets/level data/Resources/materials/IslandTourWaluigi (-48818)_Material.mat
 - Assets/level data/Resources/materials/sprite (6) (-8306)_Material.mat
+- Assets/level data/Resources/meshes/Polygon Renderer (4) Z5A0K.mesh
+- Assets/level data/Resources/meshes/Polygon Renderer K87SX.mesh
+- Assets/level data/Resources/meshes/Spikes (4) F3F0O.mesh
 - Assets/level data/Resources/materials/Polygon Renderer (4) J1W3W.mat
 - Assets/level data/Resources/materials/swampBackgroundRockE (-2626)_Material.mat
 - Assets/level data/art/Trees/treeRamp2.png
@@ -154,6 +177,7 @@ Assets:
 - Assets/level data/Resources/materials/swampBackgroundRockE (-1996)_Material.mat
 - Assets/level data/art/Wood/branch.png
 - Assets/level data/art/Props/kwolokcavernStoneSpikesSheet.png
+- Assets/level data/Resources/meshes/Polygon Renderer (7) SG2PD.mesh
 - Assets/level data/art/Rocks/horizontal rock.png
 - Assets/level data/art/Wood Structures/woodPole2.png
 - Assets/level data/Resources/materials/IslandTourWaluigi (-3030)_Material.mat
@@ -166,8 +190,12 @@ Assets:
 - Assets/level data/art/Backgrounds/swampBG.png
 - Assets/level data/element icons/HornBug.png
 - Assets/level data/Resources/materials/swampMossGroundA (-6036)_Material.mat
+- Assets/level data/Resources/materials/Polygon Renderer (9) 0BQET.mat
+- Assets/level data/Resources/meshes/Spikes (1) EIZHQ.mesh
 - Assets/level data/art/Wood Structures/woodArch.png
+- Assets/level data/Resources/meshes/Polygon Renderer (11) HZM24.mesh
 - Assets/level data/Resources/elements/Life Plant.prefab
+- Assets/level data/Resources/meshes/Polygon Collider T7QFU.mesh
 - Assets/level data/element icons/LifePlant.png
 - Assets/level data/Resources/meshes/Polygon Collider F1TZN.mesh
 - Assets/level data/art/Foliage/introSwampHangingVineGroundA.png
@@ -194,11 +222,14 @@ Assets:
 - Assets/level data/Level.prefab
 - Assets/level data/Resources/elements/HornBug.prefab
 - Assets/level data/art/Wood Structures/woodPlank.png
+- Assets/level data/Resources/materials/Polygon Renderer 0L089.mat
 - Assets/level data/element icons/NakedBug.png
+- Assets/level data/art/Trees/Materials/tree.mat
 - Assets/level data/Resources/materials/Polygon Renderer EDDIN.mat
 - Assets/level data/Resources/materials/mantis (-15864)_Material.mat
 - Assets/level data/Resources/materials/swampBackgroundRockE (-9780)_Material.mat
 - Assets/level data/Resources/materials/sprite (3) (-7056)_Material.mat
+- Assets/level data/Resources/meshes/Polygon Renderer (1) V8DRS.mesh
 - Assets/level data/Resources/materials/sprite (9) (-5028)_Material.mat
 - Assets/level data/art/Props/introSwampGiantShellASplitC.png
 - Assets/level data/Resources/materials/rock shell (-1324)_Material.mat
@@ -209,6 +240,7 @@ Assets:
 - Assets/level data/art/Branches/branchLeaves.png
 - Assets/level data/Resources/meshes/terrain collider IMDMG.mesh
 - Assets/level data/art/Foliage/Leaves.png
+- Assets/level data/Resources/materials/Polygon Renderer (6) GMVI0.mat
 - Assets/level data/Resources/meshes/Polygon Renderer R9MPR.mesh
 - Assets/level data/Resources/Basic/White.mat
 - Assets/level data/Resources/elements/Auto Rotate.prefab
@@ -240,6 +272,7 @@ Assets:
 - Assets/level data/Resources/meshes/Polygon Renderer 39T58.mesh
 - Assets/level data/Resources/meshes/Polygon Renderer (6) WFLTP.mesh
 - Assets/level data/art/Trees/tree dark.png
+- Assets/level data/Resources/meshes/Polygon Renderer Z3C3Z.mesh
 - Assets/level data/Resources/meshes/terrain collider P4GJ7.mesh
 - Assets/level data/art/Trees/treeBark.png
 - Assets/level data/Resources/materials/swampBG (-2894)_Material.mat
@@ -260,32 +293,42 @@ Assets:
 - Assets/level data/element icons/MortarWorm.png
 - Assets/level data/Resources/materials/swampBreakableFloorA (-1920)_Material.mat
 - Assets/level data/art/Wood Structures/woodSlats.png
+- Assets/level data/Resources/meshes/Polygon Renderer (9) 0BQET.mesh
 - Assets/level data/Resources/materials/swampMossGroundA (-9420)_Material.mat
 - Assets/level data/Resources/elements/Keystone.prefab
 - Assets/level data/Resources/elements/Spawn Position.prefab
+- Assets/level data/Resources/meshes/Polygon Renderer (8) SY0KD.mesh
 - Assets/level data/Resources/materials/Square (-2334)_Material.mat
+- Assets/level data/Resources/materials/Polygon Collider T7QFU.mat
 - Assets/level data/Resources/materials/Polygon Renderer (2) 7LGEA.mat
 - Assets/level data/art/Branches/limbRamp.png
 - Assets/level data/art/Rocks/sprite (3).png
 - Assets/level data/Resources/meshes/Polygon Collider (1) EKM02.mesh
+- Assets/level data/Resources/meshes/Polygon Renderer (5) VTB0G.mesh
 - Assets/level data/Resources/elements/spline collider.prefab
 - Assets/level data/Resources/materials/sprite (11) (-8026)_Material.mat
 - Assets/level data/Resources/materials/branchLeaves (-10224)_Material.mat
 - Assets/level data/art/Backgrounds/snowMountainsBG.png
 - Assets/level data/Resources/materials/8vm0tb (-1748)_Material.mat
+- Assets/level data/Resources/meshes/Polygon Renderer (6) Y55L8.mesh
 - Assets/level data/art/Wood Structures/woodWindow.png
 - Assets/level data/Resources/materials/swampBreakableFloorA (-7454)_Material.mat
 - Assets/level data/art/Wood/autumn tree.png
 - Assets/level data/Resources/materials/woodArch (-4128)_Material.mat
 - Assets/level data/Resources/materials/sprite (7) (-10444)_Material.mat
+- Assets/level data/Resources/materials/Polygon Renderer (8) ER0Q3.mat
+- Assets/level data/Resources/materials/Polygon Renderer (11) HZM24.mat
+- Assets/level data/Resources/meshes/Polygon Renderer (10) UO9V9.mesh
 - Assets/level data/element icons/Slug.png
 - Assets/level data/art/Rocks/rockFormation.png
+- Assets/level data/Resources/meshes/Polygon Renderer (11) NND2R.mesh
 - Assets/level data/Resources/materials/swampBackgroundRuinsRockPieceF (-3972)_Material.mat
 - Assets/level data/Resources/elements/Polygon Renderer.prefab
 - Assets/level data/art/Props/swampNightcrawlerBonesC.png
 - Assets/level data/Resources/materials/swampNightcrawlerBonesC (-9790)_Material.mat
 - Assets/level data/art/Branches/brushPlatform.png
 - Assets/level data/Resources/materials/swampBackgroundRuinsRockPieceF (-10916)_Material.mat
+- Assets/level data/Resources/meshes/Polygon Renderer (7) 3FSH2.mesh
 - Assets/level data/Resources/elements/Slime.prefab
 - Assets/level data/art/Rocks/root rock.png
 - Assets/level data/Resources/materials/kwolokcavernStoneSpikesSheet (-10934)_Material.mat
@@ -299,6 +342,11 @@ Assets:
 - Assets/level data/Resources/meshes/Polygon Renderer EDDIN.mesh
 - Assets/level data/Resources/materials/IslandTourWaluigi (-2254)_Material.mat
 - Assets/level data/art/Wood Structures/treeBark.png
+- Assets/level data/Resources/materials/Polygon Renderer (2) OD7P1.mat
+- Assets/level data/Resources/materials/Polygon Renderer (10) UO9V9.mat
+- Assets/level data/Resources/meshes/Polygon Renderer (4) O08TC.mesh
+- Assets/level data/Resources/meshes/Polygon Renderer 0L089.mesh
 - Assets/level data/art/Trees/introSwampWoodGroundBarkB.png
+- Assets/level data/Resources/meshes/Polygon Renderer (3) V0HPG.mesh
 - Assets/level data/art/Branches/branch2.png
 Dependencies: []
