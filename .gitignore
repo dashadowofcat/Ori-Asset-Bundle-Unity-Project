@@ -1,6 +1,6 @@
 Ori modding project/Assets/*.unity
 /Ori modding project/Assets/Output/*
-/Ori modding project/Assets/level data/Resources/materials
+/Ori modding project/Assets/level data/Resources/materials/*
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
