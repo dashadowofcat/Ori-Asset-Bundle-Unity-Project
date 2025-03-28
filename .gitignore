@@ -10,6 +10,8 @@
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 
+Ori modding project/Assets/level data/Resources/materials/*
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
@@ -73,5 +75,5 @@ crashlytics-build.properties
 
 
 Ori modding project/Assets/*.unity
-Ori modding project/Assets/AssetBundles/ori
-Ori modding project/Assets/Output/ori
+/Ori modding project/Assets/Output
+/Ori modding project/Assets/level data/Resources/materials
