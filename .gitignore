@@ -74,4 +74,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 
-
+Ori modding project/Assets/*.unity
+/Ori modding project/Assets/Output/*
+/Ori modding project/Assets/level data/Resources/materials/*
