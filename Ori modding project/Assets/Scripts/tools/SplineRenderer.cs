@@ -17,6 +17,7 @@ public class SplineRenderer : MonoBehaviour
 
     public int SplineCount = 25;
     public float SplineWidth = 0.1f;
+    public float SplineOffset = 0f;
 
     public enum SplineType
     {
@@ -25,7 +26,7 @@ public class SplineRenderer : MonoBehaviour
         CatmullRom
     }
 
-    public Color Color;
+    public Color Color = Color.black;
 
     public Material Material;
 
@@ -63,7 +64,7 @@ public class SplineRenderer : MonoBehaviour
                 break;
         }
 
-        Mesh SplineMesh = SplineMeshGenerator.CreateMeshFromSpline(InterpolatedPoints, SplineWidth);
+        Mesh SplineMesh = SplineMeshGenerator.CreateMeshFromSpline(InterpolatedPoints, SplineWidth, SplineOffset);
 
         GameObject Renderer = new GameObject("Renderer");
 
@@ -150,7 +151,7 @@ public class SplineRenderer : MonoBehaviour
 
     public class SplineMeshGenerator
     {
-        public static Mesh CreateMeshFromSpline(List<Vector2> splinePoints, float splineWidth)
+        public static Mesh CreateMeshFromSpline(List<Vector2> splinePoints, float splineWidth, float offset = 0f)
         {
             if (splinePoints == null || splinePoints.Count < 2)
             {
@@ -184,8 +185,8 @@ public class SplineRenderer : MonoBehaviour
 
                 Vector2 left = new Vector2(-forward.y, forward.x);
 
-                vertices[vertexIndex] = splinePoints[i] + left * splineWidth * 0.5f;
-                vertices[vertexIndex + 1] = splinePoints[i] - left * splineWidth * 0.5f;
+                vertices[vertexIndex] = splinePoints[i] - left * offset;
+                vertices[vertexIndex + 1] = splinePoints[i] - left * (splineWidth + offset);
 
                 if(i < splinePoints.Count - 1)
                 {
