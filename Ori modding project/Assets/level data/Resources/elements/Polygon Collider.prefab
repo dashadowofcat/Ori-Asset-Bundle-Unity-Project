@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4539397561593780800}
   - component: {fileID: 1055982452948223784}
   - component: {fileID: 114936402817233662}
+  - component: {fileID: 7824042434756685695}
   m_Layer: 0
   m_Name: Polygon Collider
   m_TagString: Untagged
@@ -72,3 +73,20 @@ MonoBehaviour:
   Damage: 10
   DamageType: 3
   SavePath: 
+--- !u!114 &7824042434756685695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539397561593780813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c419fe80cceddb498bad7771652ab3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Polygon: {fileID: 1055982452948223784}
+  Color: {r: 0, g: 0, b: 0, a: 1}
+  Material: {fileID: 0}
+  MaterialSavePath: 
+  MeshSavePath: 

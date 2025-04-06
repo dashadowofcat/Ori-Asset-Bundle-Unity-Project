@@ -11,6 +11,7 @@ using UnityEngine;
 public class SplineRenderer : MonoBehaviour
 {
     public EdgeCollider2D Edge;
+    private Vector2[] _prevEdgePoints;
 
     [Header("Spline")]
     public SplineType CurveType;
@@ -32,6 +33,8 @@ public class SplineRenderer : MonoBehaviour
 
     public string MaterialSavePath;
     public string MeshSavePath;
+
+    public bool autoSave = true;
 
     [Button("Generate Renderer")]
     public void GenerateShape()
@@ -147,6 +150,44 @@ public class SplineRenderer : MonoBehaviour
         string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
         return new string(Enumerable.Repeat(chars, Length).Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+#if UNITY_EDITOR
+        if (autoSave && Tools.current != Tool.None && Edge != null)
+        {
+            if (_prevEdgePoints == null)
+            {
+                _prevEdgePoints = new Vector2[Edge.points.Count()];
+                for (int i = 0; i < Edge.points.Count(); ++i)
+                    _prevEdgePoints[i] = Edge.points[i];
+            }
+            else if (Edge.points.Count() != _prevEdgePoints.Count())
+            {
+                _prevEdgePoints = new Vector2[Edge.points.Count()];
+                for (int i = 0; i < Edge.points.Count(); ++i)
+                    _prevEdgePoints[i] = Edge.points[i];
+                Debug.Log(gameObject.name + " point count changed");
+                GenerateShape();
+            }
+            else
+            {
+                for (int i = 0; i < _prevEdgePoints.Count(); ++i)
+                {
+                    if (_prevEdgePoints[i] != Edge.points[i])
+                    {
+                        for (int j = 0; j < Edge.points.Count(); ++j)
+                            _prevEdgePoints[j] = Edge.points[j];
+                        Debug.Log(gameObject.name + " points changed");
+                        GenerateShape();
+
+                        break;
+                    }
+                }
+            }
+        }
+#endif
     }
 
     public class SplineMeshGenerator

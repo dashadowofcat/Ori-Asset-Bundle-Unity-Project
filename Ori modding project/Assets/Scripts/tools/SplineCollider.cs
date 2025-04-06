@@ -11,6 +11,7 @@ public class SplineCollider : MonoBehaviour
 {
 
     public EdgeCollider2D Edge;
+    private Vector2[] _prevEdgePoints;
 
     [Header("Spline")]
     public SplineType CurveType;
@@ -37,6 +38,8 @@ public class SplineCollider : MonoBehaviour
 
     [Header("Save Settings")]
     public string SavePath;
+
+    public bool autoSave = true;
 
     public enum SplineType
     {
@@ -214,6 +217,37 @@ public class SplineCollider : MonoBehaviour
         return quad;
     }
 
+    //void OnValidate()
+    //{
+    //    if(_prevEdgePoints == null)
+    //    {
+    //        _prevEdgePoints = new Vector2[Edge.points.Count()];
+    //        for (int i = 0; i < Edge.points.Count(); ++i)
+    //            _prevEdgePoints[i] = Edge.points[i];
+    //    }
+    //    else if (Edge.points.Count() != _prevEdgePoints.Count())
+    //    {
+    //        _prevEdgePoints = new Vector2[Edge.points.Count()];
+    //        for (int i = 0; i < Edge.points.Count(); ++i)
+    //            _prevEdgePoints[i] = Edge.points[i];
+    //        Debug.Log(gameObject.name + " point count changed");
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < _prevEdgePoints.Count(); ++i)
+    //        {
+    //            if (_prevEdgePoints[i] != Edge.points[i])
+    //            {
+    //                for (int j = 0; j < Edge.points.Count(); ++j)
+    //                    _prevEdgePoints[j] = Edge.points[j];
+    //                Debug.Log(gameObject.name + " points changed");
+
+    //                break;
+    //            }
+    //        }
+    //    }
+    //}
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = IsDamageDealer ? GizmosDamageCurveColor : GizmosTerrainCurveColor;
@@ -255,6 +289,41 @@ public class SplineCollider : MonoBehaviour
         {
             Gizmos.DrawSphere((Vector3)point, GizmosPointSize);
         }
+
+#if UNITY_EDITOR
+        if (autoSave && Tools.current != Tool.None && Edge != null)
+        {
+            if (_prevEdgePoints == null)
+            {
+                _prevEdgePoints = new Vector2[Edge.points.Count()];
+                for (int i = 0; i < Edge.points.Count(); ++i)
+                    _prevEdgePoints[i] = Edge.points[i];
+            }
+            else if (Edge.points.Count() != _prevEdgePoints.Count())
+            {
+                _prevEdgePoints = new Vector2[Edge.points.Count()];
+                for (int i = 0; i < Edge.points.Count(); ++i)
+                    _prevEdgePoints[i] = Edge.points[i];
+                Debug.Log(gameObject.name + " point count changed");
+                GenerateCollision();
+            }
+            else
+            {
+                for (int i = 0; i < _prevEdgePoints.Count(); ++i)
+                {
+                    if (_prevEdgePoints[i] != Edge.points[i])
+                    {
+                        for (int j = 0; j < Edge.points.Count(); ++j)
+                            _prevEdgePoints[j] = Edge.points[j];
+                        Debug.Log(gameObject.name + " points changed");
+                        GenerateCollision();
+
+                        break;
+                    }
+                }
+            }
+        }
+#endif
     }
 
     string GenerateRandomString(int Length)

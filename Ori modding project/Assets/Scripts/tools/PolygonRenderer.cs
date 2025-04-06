@@ -10,6 +10,7 @@ using UnityEngine;
 public class PolygonRenderer : MonoBehaviour
 {
     public Polygon Polygon;
+    private Vector2[] _prevPolygonPoints;
 
     public Color Color;
 
@@ -17,6 +18,8 @@ public class PolygonRenderer : MonoBehaviour
 
     public string MaterialSavePath;
     public string MeshSavePath;
+
+    public bool autoSave = true;
 
     [Button("Generate Renderer")]
     public void GenerateShape()
@@ -116,6 +119,44 @@ public class PolygonRenderer : MonoBehaviour
         string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
         return new string(Enumerable.Repeat(chars, Length).Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+#if UNITY_EDITOR
+        if (autoSave && Tools.current != Tool.None && Polygon != null)
+        {
+            if (_prevPolygonPoints == null)
+            {
+                _prevPolygonPoints = new Vector2[Polygon.Points.Count()];
+                for (int i = 0; i < Polygon.Points.Count(); ++i)
+                    _prevPolygonPoints[i] = Polygon.Points[i];
+            }
+            else if (Polygon.Points.Count() != _prevPolygonPoints.Count())
+            {
+                _prevPolygonPoints = new Vector2[Polygon.Points.Count()];
+                for (int i = 0; i < Polygon.Points.Count(); ++i)
+                    _prevPolygonPoints[i] = Polygon.Points[i];
+                Debug.Log(gameObject.name + " point count changed");
+                GenerateShape();
+            }
+            else
+            {
+                for (int i = 0; i < _prevPolygonPoints.Count(); ++i)
+                {
+                    if (_prevPolygonPoints[i] != Polygon.Points[i])
+                    {
+                        for (int j = 0; j < Polygon.Points.Count(); ++j)
+                            _prevPolygonPoints[j] = Polygon.Points[j];
+                        Debug.Log(gameObject.name + " points changed");
+                        GenerateShape();
+
+                        break;
+                    }
+                }
+            }
+        }
+#endif
     }
 
     public class PolygonMeshGenerator
