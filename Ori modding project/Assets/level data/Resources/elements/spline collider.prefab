@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3646974654197837018}
   - component: {fileID: 7101554760779057184}
   - component: {fileID: 4558647990495188119}
+  - component: {fileID: 5604716636682724012}
   m_Layer: 0
   m_Name: spline collider
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Edge: {fileID: 7101554760779057184}
   CurveType: 0
-  SplineCount: 50
+  SplineCount: 25
   GizmosTerrainCurveColor: {r: 0, g: 1, b: 0.5568628, a: 1}
   GizmosDamageCurveColor: {r: 1, g: 0, b: 0, a: 1}
   GizmosPointColor: {r: 1, g: 0, b: 0, a: 1}
@@ -75,3 +76,24 @@ MonoBehaviour:
   Damage: 10
   DamageType: 3
   SavePath: 
+--- !u!114 &5604716636682724012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823580371802007435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507450d90c9104d4ca9ac460d51a1b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Edge: {fileID: 7101554760779057184}
+  CurveType: 0
+  SplineCount: 25
+  SplineWidth: 0.1
+  SplineOffset: 0.1
+  Color: {r: 0, g: 0, b: 0, a: 1}
+  Material: {fileID: 0}
+  MaterialSavePath: 
+  MeshSavePath: 

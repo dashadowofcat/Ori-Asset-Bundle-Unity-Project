@@ -12,6 +12,7 @@ public class PolygonCollider : MonoBehaviour
 {
 
     public Polygon Polygon;
+    private Vector2[] _prevPolygonPoints;
 
     [Header("Collision Settings")]
     public float ColliderWidth;
@@ -26,6 +27,8 @@ public class PolygonCollider : MonoBehaviour
 
     [Header("Save Settings")]
     public string SavePath;
+
+    public bool autoSave = true;
 
     [Button(null, EButtonEnableMode.Editor)]
     public void GenerateCollision()
@@ -186,5 +189,43 @@ public class PolygonCollider : MonoBehaviour
         quad.transform.parent = Parent;
 
         return quad;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+#if UNITY_EDITOR
+        if (autoSave && Tools.current != Tool.None && Polygon != null)
+        {
+            if (_prevPolygonPoints == null)
+            {
+                _prevPolygonPoints = new Vector2[Polygon.Points.Count()];
+                for (int i = 0; i < Polygon.Points.Count(); ++i)
+                    _prevPolygonPoints[i] = Polygon.Points[i];
+            }
+            else if (Polygon.Points.Count() != _prevPolygonPoints.Count())
+            {
+                _prevPolygonPoints = new Vector2[Polygon.Points.Count()];
+                for (int i = 0; i < Polygon.Points.Count(); ++i)
+                    _prevPolygonPoints[i] = Polygon.Points[i];
+                Debug.Log(gameObject.name + " point count changed");
+                GenerateCollision();
+            }
+            else
+            {
+                for (int i = 0; i < _prevPolygonPoints.Count(); ++i)
+                {
+                    if (_prevPolygonPoints[i] != Polygon.Points[i])
+                    {
+                        for (int j = 0; j < Polygon.Points.Count(); ++j)
+                            _prevPolygonPoints[j] = Polygon.Points[j];
+                        Debug.Log(gameObject.name + " points changed");
+                        GenerateCollision();
+
+                        break;
+                    }
+                }
+            }
+        }
+#endif
     }
 }

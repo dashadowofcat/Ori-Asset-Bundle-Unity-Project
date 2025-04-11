@@ -2,44 +2,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static DamageDealerParameters;
 
-public class SplineCollider : MonoBehaviour
+
+public class SplineRenderer : MonoBehaviour
 {
-
     public EdgeCollider2D Edge;
     private Vector2[] _prevEdgePoints;
 
     [Header("Spline")]
     public SplineType CurveType;
 
-    public int SplineCount = 100;
-
-    public Color GizmosTerrainCurveColor;
-    public Color GizmosDamageCurveColor;
-
-    public Color GizmosPointColor;
-
-    public float GizmosPointSize;
-
-    [Header("Collision Settings")]
-    public float ColliderWidth;
-
-    public bool IsDamageDealer;
-
-    [ShowIf("IsDamageDealer")]
-    public float Damage;
-
-    [ShowIf("IsDamageDealer")]
-    public DamageDealerParameters.damageType DamageType;
-
-    [Header("Save Settings")]
-    public string SavePath;
-
-    public bool autoSave = true;
+    public int SplineCount = 25;
+    public float SplineWidth = 0.1f;
+    public float SplineOffset = 0f;
 
     public enum SplineType
     {
@@ -48,37 +27,19 @@ public class SplineCollider : MonoBehaviour
         CatmullRom
     }
 
-    [Button(null, EButtonEnableMode.Editor)]
-    public void GenerateCollision()
+    public Color Color = Color.black;
+
+    public Material Material;
+
+    public string MaterialSavePath;
+    public string MeshSavePath;
+
+    public bool autoSave = true;
+
+    [Button("Generate Renderer")]
+    public void GenerateShape()
     {
-        if (transform.Find("Collision") != null) DestroyImmediate(transform.Find("Collision").gameObject);
-
-        if (transform.Find("TerrainDamageDealer") != null) DestroyImmediate(transform.Find("TerrainDamageDealer").gameObject);
-
-        if (IsDamageDealer)
-        {
-            GameObject DamageDealerCondition = new GameObject("TerrainDamageDealer");
-
-            DamageDealerCondition.transform.parent = transform;
-
-
-            GameObject DamageDealerAmount = new GameObject("DamageAmount");
-
-            DamageDealerAmount.transform.parent = DamageDealerCondition.transform;
-
-            GameObject DamageAmountValue = new GameObject(Damage.ToString());
-
-            DamageAmountValue.transform.parent = DamageDealerAmount.transform;
-
-
-            GameObject DamageDealerType = new GameObject("DamageType");
-
-            DamageDealerType.transform.parent = DamageDealerCondition.transform;
-
-            GameObject DamageTypeValue = new GameObject(Enum.GetName(typeof(damageType), DamageType));
-
-            DamageTypeValue.transform.parent = DamageDealerType.transform;
-        }
+        if (transform.Find("Renderer") != null) DestroyImmediate(transform.Find("Renderer").gameObject);
 
 
         Vector2[] Points = Edge.points;
@@ -106,190 +67,93 @@ public class SplineCollider : MonoBehaviour
                 break;
         }
 
-        GameObject ColliderGameObject = new GameObject("Collision");
+        Mesh SplineMesh = SplineMeshGenerator.CreateMeshFromSpline(InterpolatedPoints, SplineWidth, SplineOffset);
 
-        ColliderGameObject.layer = 10;
+        GameObject Renderer = new GameObject("Renderer");
 
-        ColliderGameObject.transform.parent = transform;
+        Renderer.transform.parent = gameObject.transform;
 
-        List<MeshFilter> ColliderMeshes = new List<MeshFilter>();
+        MeshFilter meshFilter = Renderer.AddComponent<MeshFilter>();
 
-        for (int y = 0; y < InterpolatedPoints.ToArray().Length; y++)
-        {
-            if (y == InterpolatedPoints.ToArray().Length - 1) break;
+        MeshRenderer meshRenderer = Renderer.AddComponent<MeshRenderer>();
+        meshRenderer.material = new Material((Material)Resources.Load("Basic/White"));
+        meshRenderer.sharedMaterial.color = Color;
 
-            var Quad = InstanciateCollisionQuad(InterpolatedPoints[y], InterpolatedPoints[y + 1], ColliderGameObject.transform, ColliderWidth);
-
-            ColliderMeshes.Add(Quad.GetComponent<MeshFilter>());
-        }
-
-        CombineInstance[] combine = new CombineInstance[ColliderMeshes.ToArray().Length];
-
-        int z = 0;
-        while (z < ColliderMeshes.ToArray().Length)
-        {
-            combine[z].mesh = ColliderMeshes[z].sharedMesh;
-            combine[z].transform = ColliderMeshes[z].transform.localToWorldMatrix;
-            ColliderMeshes[z].gameObject.SetActive(false);
-
-            z++;
-        }
-
-        Mesh mesh = new Mesh();
-        mesh.CombineMeshes(combine);
-        ColliderGameObject.AddComponent<MeshFilter>().sharedMesh = mesh;
-        ColliderGameObject.AddComponent<MeshCollider>();
-
-        foreach (MeshFilter collider in ColliderMeshes)
-        {
-            DestroyImmediate(collider.gameObject);
-        }
+        meshFilter.mesh = SplineMesh;
 
         GenerateSavePath();
 
 #if UNITY_EDITOR
-        AssetDatabase.CreateAsset(mesh, SavePath);
+
+        AssetDatabase.CreateAsset(meshRenderer.sharedMaterial, MaterialSavePath);
+
+        AssetDatabase.CreateAsset(meshFilter.sharedMesh, MeshSavePath);
+
         AssetDatabase.SaveAssets();
+
 #endif
     }
 
 
-    [Button(null, EButtonEnableMode.Editor)]
-    public void RemoveCollision()
-    {
-        if (transform.Find("TerrainDamageDealer") != null) DestroyImmediate(transform.Find("TerrainDamageDealer").gameObject);
 
-        if (transform.Find("Collision") != null)
+    [Button(null, EButtonEnableMode.Editor)]
+    public void RemoveRenderer()
+    {
+        if (transform.Find("Renderer") != null)
         {
-            DestroyImmediate(transform.Find("Collision").gameObject);
+            DestroyImmediate(transform.Find("Renderer").gameObject);
 
 #if UNITY_EDITOR
-            AssetDatabase.DeleteAsset(SavePath);
+            AssetDatabase.DeleteAsset(MaterialSavePath);
+
+            AssetDatabase.DeleteAsset(MeshSavePath);
+
             AssetDatabase.SaveAssets();
 #endif
         }
     }
 
-    [Button("Generate Path" , EButtonEnableMode.Editor)]
+    [Button("Generate Path", EButtonEnableMode.Editor)]
     void RegeneratePath()
     {
-        SavePath = string.Empty;
+        MaterialSavePath = string.Empty;
+        MeshSavePath = string.Empty;
+
         GenerateSavePath();
     }
 
     void GenerateSavePath()
     {
-        if (SavePath == string.Empty)
+        if (MaterialSavePath == string.Empty && MeshSavePath == string.Empty)
         {
-            SavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
+            MaterialSavePath = $"Assets/level data/Resources/materials/{transform.name} {GenerateRandomString(5)}.mat";
+            MeshSavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
 
 #if UNITY_EDITOR
-            while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(SavePath)))
+            while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(MaterialSavePath)))
             {
-                SavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
+                MaterialSavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(5)}.mat";
+            }
+
+            while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(MeshSavePath)))
+            {
+                MeshSavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
             }
 #endif
         }
     }
 
-    public GameObject InstanciateCollisionQuad(Vector2 pointA, Vector2 pointB, Transform Parent, float QuadWidth)
+    string GenerateRandomString(int Length)
     {
-        Vector2 midpoint = (pointA + pointB) / 2f;
+        System.Random random = new System.Random();
 
-        float distance = Vector2.Distance(pointA, pointB);
+        string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-        float angle = Mathf.Atan2(pointB.y - pointA.y, pointB.x - pointA.x) * Mathf.Rad2Deg;
-
-        GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-
-        quad.transform.position = new Vector3(midpoint.x, midpoint.y, 0);
-
-        quad.transform.rotation = Quaternion.Euler(90 + angle, -90, 90);
-
-        quad.transform.localScale = new Vector3(distance, 1, 1);
-
-        quad.transform.localScale = new Vector3(quad.transform.localScale.x, QuadWidth, quad.transform.localScale.z);
-
-        DestroyImmediate(quad.GetComponent<MeshRenderer>());
-
-        quad.transform.parent = Parent;
-
-        return quad;
+        return new string(Enumerable.Repeat(chars, Length).Select(s => s[random.Next(s.Length)]).ToArray());
     }
 
-    //void OnValidate()
-    //{
-    //    if(_prevEdgePoints == null)
-    //    {
-    //        _prevEdgePoints = new Vector2[Edge.points.Count()];
-    //        for (int i = 0; i < Edge.points.Count(); ++i)
-    //            _prevEdgePoints[i] = Edge.points[i];
-    //    }
-    //    else if (Edge.points.Count() != _prevEdgePoints.Count())
-    //    {
-    //        _prevEdgePoints = new Vector2[Edge.points.Count()];
-    //        for (int i = 0; i < Edge.points.Count(); ++i)
-    //            _prevEdgePoints[i] = Edge.points[i];
-    //        Debug.Log(gameObject.name + " point count changed");
-    //    }
-    //    else
-    //    {
-    //        for (int i = 0; i < _prevEdgePoints.Count(); ++i)
-    //        {
-    //            if (_prevEdgePoints[i] != Edge.points[i])
-    //            {
-    //                for (int j = 0; j < Edge.points.Count(); ++j)
-    //                    _prevEdgePoints[j] = Edge.points[j];
-    //                Debug.Log(gameObject.name + " points changed");
-
-    //                break;
-    //            }
-    //        }
-    //    }
-    //}
-
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
-        Gizmos.color = IsDamageDealer ? GizmosDamageCurveColor : GizmosTerrainCurveColor;
-
-        Vector2[] Points = Edge.points;
-
-        for (int x = 0; x < Points.Length; x++)
-        {
-            Points[x] = transform.position + (Vector3)Points[x];
-        }
-
-        List<Vector2> InterpolatedPoints = new List<Vector2>();
-
-        switch (CurveType)
-        {
-            case SplineType.Cubic:
-                InterpolatedPoints = Cubic.Interpolate(Points, SplineCount).ToList();
-                break;
-
-            case SplineType.Bezier:
-                InterpolatedPoints = Bezier.Interpolate(Points, SplineCount).ToList();
-                break;
-
-            case SplineType.CatmullRom:
-                InterpolatedPoints = CatmullRom.Interpolate(Points, SplineCount).ToList();
-                break;
-        }
-
-        for (int y = 0; y < InterpolatedPoints.ToArray().Length; y++)
-        {
-            if (y == InterpolatedPoints.ToArray().Length - 1) break;
-        
-            Gizmos.DrawLine((Vector3)InterpolatedPoints[y], (Vector3)InterpolatedPoints[y + 1]);
-        }
-
-        Gizmos.color = GizmosPointColor;
-
-        foreach (Vector2 point in InterpolatedPoints)
-        {
-            Gizmos.DrawSphere((Vector3)point, GizmosPointSize);
-        }
-
 #if UNITY_EDITOR
         if (autoSave && Tools.current != Tool.None && Edge != null)
         {
@@ -305,7 +169,7 @@ public class SplineCollider : MonoBehaviour
                 for (int i = 0; i < Edge.points.Count(); ++i)
                     _prevEdgePoints[i] = Edge.points[i];
                 Debug.Log(gameObject.name + " point count changed");
-                GenerateCollision();
+                GenerateShape();
             }
             else
             {
@@ -316,7 +180,7 @@ public class SplineCollider : MonoBehaviour
                         for (int j = 0; j < Edge.points.Count(); ++j)
                             _prevEdgePoints[j] = Edge.points[j];
                         Debug.Log(gameObject.name + " points changed");
-                        GenerateCollision();
+                        GenerateShape();
 
                         break;
                     }
@@ -326,15 +190,71 @@ public class SplineCollider : MonoBehaviour
 #endif
     }
 
-    string GenerateRandomString(int Length)
+    public class SplineMeshGenerator
     {
-        System.Random random = new System.Random();
+        public static Mesh CreateMeshFromSpline(List<Vector2> splinePoints, float splineWidth, float offset = 0f)
+        {
+            if (splinePoints == null || splinePoints.Count < 2)
+            {
+                Debug.LogError("Spline must have at least 2 points.");
+                return null;
+            }
 
-        string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            // Create a new mesh
+            Mesh mesh = new Mesh();
 
-        return new string(Enumerable.Repeat(chars, Length).Select(s => s[random.Next(s.Length)]).ToArray());
+            // Convert 2D points to 3D vertices
+            Vector3[] vertices = new Vector3[splinePoints.Count * 2];
+            int[] triangles = new int[2 * (splinePoints.Count - 1) * 3];
+            int vertexIndex = 0;
+            int triangleIndex = 0;
+
+            for(int i = 0; i < splinePoints.Count; ++i)
+            {
+                Vector2 forward = Vector2.zero;
+                if(i < splinePoints.Count - 1)
+                {
+                    forward += splinePoints[i + 1] - splinePoints[i];
+                }
+
+                if(i > 0)
+                {
+                    forward += splinePoints[i] - splinePoints[i - 1];
+                }
+
+                forward.Normalize();
+
+                Vector2 left = new Vector2(-forward.y, forward.x);
+
+                vertices[vertexIndex] = splinePoints[i] - left * offset;
+                vertices[vertexIndex + 1] = splinePoints[i] - left * (splineWidth + offset);
+
+                if(i < splinePoints.Count - 1)
+                {
+                    triangles[triangleIndex] = vertexIndex;
+                    triangles[triangleIndex + 1] = vertexIndex + 2;
+                    triangles[triangleIndex + 2] = vertexIndex + 1;
+
+                    triangles[triangleIndex + 3] = vertexIndex + 1;
+                    triangles[triangleIndex + 4] = vertexIndex + 2;
+                    triangles[triangleIndex + 5] = vertexIndex + 3;
+                }
+
+                vertexIndex += 2;
+                triangleIndex += 6;
+            }
+
+            // Assign vertices and triangles to the mesh
+            mesh.vertices = vertices;
+            mesh.triangles = triangles;
+
+            // Recalculate normals and bounds for the mesh
+            mesh.RecalculateNormals();
+            mesh.RecalculateBounds();
+
+            return mesh;
+        }
     }
-
 
     public static class Cubic
     {
@@ -525,6 +445,117 @@ public class SplineCollider : MonoBehaviour
                 a0 * p0.x + a1 * p1.x + a2 * p2.x + a3 * p3.x,
                 a0 * p0.y + a1 * p1.y + a2 * p2.y + a3 * p3.y
             );
+        }
+    }
+
+    public class Triangulator
+    {
+        private List<Vector2> points;
+
+        public Triangulator(List<Vector2> points)
+        {
+            this.points = points;
+        }
+
+        public int[] Triangulate()
+        {
+            List<int> indices = new List<int>();
+
+            int n = points.Count;
+            if (n < 3)
+                return indices.ToArray();
+
+            int[] V = new int[n];
+            if (Area() > 0)
+            {
+                for (int v = 0; v < n; v++) V[v] = v;
+            }
+            else
+            {
+                for (int v = 0; v < n; v++) V[v] = (n - 1) - v;
+            }
+
+            int nv = n;
+            int count = 2 * nv;
+            for (int m = 0, v = nv - 1; nv > 2;)
+            {
+                if ((count--) <= 0)
+                    return indices.ToArray();
+
+                int u = v;
+                if (nv <= u) u = 0;
+                v = u + 1;
+                if (nv <= v) v = 0;
+                int w = v + 1;
+                if (nv <= w) w = 0;
+
+                if (Snip(u, v, w, nv, V))
+                {
+                    int a, b, c, s, t;
+                    a = V[u];
+                    b = V[v];
+                    c = V[w];
+                    indices.Add(a);
+                    indices.Add(b);
+                    indices.Add(c);
+                    m++;
+                    for (s = v, t = v + 1; t < nv; s++, t++) V[s] = V[t];
+                    nv--;
+                    count = 2 * nv;
+                }
+            }
+
+            indices.Reverse();
+            return indices.ToArray();
+        }
+
+        private float Area()
+        {
+            int n = points.Count;
+            float A = 0.0f;
+            for (int p = n - 1, q = 0; q < n; p = q++)
+            {
+                Vector2 pval = points[p];
+                Vector2 qval = points[q];
+                A += pval.x * qval.y - qval.x * pval.y;
+            }
+            return A * 0.5f;
+        }
+
+        private bool Snip(int u, int v, int w, int n, int[] V)
+        {
+            int p;
+            Vector2 A = points[V[u]];
+            Vector2 B = points[V[v]];
+            Vector2 C = points[V[w]];
+            if (Mathf.Epsilon > (((B.x - A.x) * (C.y - A.y)) - ((B.y - A.y) * (C.x - A.x))))
+                return false;
+            for (p = 0; p < n; p++)
+            {
+                if ((p == u) || (p == v) || (p == w)) continue;
+                Vector2 P = points[V[p]];
+                if (InsideTriangle(A, B, C, P)) return false;
+            }
+            return true;
+        }
+
+        private bool InsideTriangle(Vector2 A, Vector2 B, Vector2 C, Vector2 P)
+        {
+            float ax, ay, bx, by, cx, cy, apx, apy, bpx, bpy, cpx, cpy;
+            float cCROSSap, bCROSScp, aCROSSbp;
+
+            ax = C.x - B.x; ay = C.y - B.y;
+            bx = A.x - C.x; by = A.y - C.y;
+            cx = B.x - A.x; cy = B.y - A.y;
+            apx = P.x - A.x; apy = P.y - A.y;
+            bpx = P.x - B.x; bpy = P.y - B.y;
+            cpx = P.x - C.x; cpy = P.y - C.y;
+
+            aCROSSbp = ax * bpy - ay * bpx;
+            cCROSSap = cx * apy - cy * apx;
+            bCROSScp = bx * cpy - by * cpx;
+
+            return ((aCROSSbp >= 0.0f) && (bCROSScp >= 0.0f) && (cCROSSap >= 0.0f));
         }
     }
 }
