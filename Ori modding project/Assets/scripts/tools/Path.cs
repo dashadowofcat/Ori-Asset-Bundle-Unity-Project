@@ -28,6 +28,42 @@ public class Path
         };
     }
 
+    public bool IsClosed
+    {
+        get
+        {
+            return isClosed;
+        }
+        set
+        {
+            if (IsClosed != value)
+            {
+                isClosed = !isClosed;
+
+                if (isClosed)
+                {
+                    points.Add(points[points.Count - 1] * 2 - points[points.Count - 2]);
+                    points.Add(points[0] * 2 - points[1]);
+                    if (autoSetControlPoints)
+                    {
+                        AutoSetAnchorControlPoints(0);
+                        AutoSetAnchorControlPoints(points.Count - 3);
+                    }
+
+                }
+
+                else
+                {
+                    points.RemoveRange(points.Count - 2, 2);
+                    if (autoSetControlPoints)
+                    {
+                        AutoSetStartAndEndControls();
+                    }
+                }
+            }
+        }
+    }
+
     public bool AutoSetControlPoints
     {
         get
@@ -78,6 +114,46 @@ public class Path
         }
     }
 
+    public void SplitSegment(Vector3 anchorPos, int segmentIndex)
+    {
+        points.InsertRange(segmentIndex * 3 + 2, new Vector3[] { Vector3.zero, anchorPos, Vector3.zero });
+
+        if(autoSetControlPoints)
+        {
+            AutoSetAllAffectedControlPoints(segmentIndex * 3 + 3);
+        }
+        else
+        {
+            AutoSetAnchorControlPoints(segmentIndex * 3 + 3);
+        }
+    }
+
+    public void DeleteSegment(int anchorIndex)
+    {
+        if(NumSegments > 2 || !isClosed && NumSegments > 1)
+        {
+            if (anchorIndex == 0)
+            {
+                if (isClosed)
+                {
+                    points[points.Count - 1] = points[2];
+                }
+
+                points.RemoveRange(0, 3);
+            }
+
+            else if (anchorIndex == points.Count - 1 && !isClosed)
+            {
+                points.RemoveRange(anchorIndex - 2, 3);
+            }
+
+            else
+            {
+                points.RemoveRange(anchorIndex - 1, 3);
+            }
+        }
+    }
+
     public Vector3[] GetPointsInSegment(int i)
     {
         return new Vector3[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[LoopIndex( i * 3 + 3 )]};
@@ -123,32 +199,6 @@ public class Path
                         points[LoopIndex(correspondingControlIndex)] = points[LoopIndex(anchorIndex)] + dir * dist;
                     }
                 }
-            }
-        }
-    }
-
-    public void ToggleClosed()
-    {
-        isClosed = !isClosed;
-
-        if (isClosed) 
-        {
-            points.Add(points[points.Count - 1] * 2 - points[points.Count - 2]);
-            points.Add(points[0] * 2 - points[1]);
-            if (autoSetControlPoints)
-            {
-                AutoSetAnchorControlPoints(0);
-                AutoSetAnchorControlPoints(points.Count - 3);
-            }
-
-        }
-
-        else
-        {
-            points.RemoveRange(points.Count - 2, 2);
-            if(autoSetControlPoints)
-            {
-                AutoSetStartAndEndControls();
             }
         }
     }
