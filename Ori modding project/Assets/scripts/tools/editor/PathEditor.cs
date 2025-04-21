@@ -60,7 +60,7 @@ public class PathEditor : Editor
 
         if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift)
         {
-            if(selectedSegmentIndex != -1)
+            if(selectedSegmentIndex != -1) // If hovering over a segment
             {
                 Undo.RecordObject(creator, "Split segment");
                 path.SplitSegment(new Vector3(mousePos.x, mousePos.y, creator.transform.position.z), selectedSegmentIndex);
@@ -73,7 +73,26 @@ public class PathEditor : Editor
             }
         }
 
-        if (guiEvent.type == EventType.MouseDown && guiEvent.button == 1)
+        if (guiEvent.type == EventType.MouseDown && guiEvent.button == 1 && guiEvent.shift)
+        {
+            if(selectedSegmentIndex != -1 && !path.IsClosed)
+            {
+                Undo.RecordObject(creator, "Straighten segment");
+                path.StraightenSegment(selectedSegmentIndex);
+            }
+            else if (selectedSegmentIndex != -1 && selectedSegmentIndex != path.NumSegments - 1)
+            {
+                Undo.RecordObject(creator, "Straighten segment");
+                path.StraightenSegment(selectedSegmentIndex);
+            }
+            else if (selectedSegmentIndex != -1)
+            {
+                Undo.RecordObject(creator, "Straighten segment");
+                path.StraightenClosedSegment();
+            }
+        }
+
+            if (guiEvent.type == EventType.MouseDown && guiEvent.button == 1)
         {
             float minDistToAnchor = creator.anchorDiameter * 0.5f;
             int closestAnchorIndex = -1;
