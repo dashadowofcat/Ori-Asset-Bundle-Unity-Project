@@ -128,6 +128,21 @@ public class Path
         }
     }
 
+    public void StraightenSegment(int segmentIndex)
+    {
+        Vector3 midPoint = (points[segmentIndex * 3 + 3] + points[segmentIndex * 3]) / 2;
+        points[segmentIndex * 3 + 1] = midPoint;
+        points[segmentIndex * 3 + 2] = midPoint;
+    }
+
+    public void StraightenClosedSegment()
+    {
+        Vector3 midPoint = (points[points.Count - 3] + points[0]) / 2;
+        points[points.Count - 1] = midPoint;
+        points[points.Count - 2] = midPoint;
+
+    }
+
     public void DeleteSegment(int anchorIndex)
     {
         if(NumSegments > 2 || !isClosed && NumSegments > 1)
