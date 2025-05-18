@@ -38,7 +38,7 @@ public class Path
         {
             if (IsClosed != value)
             {
-                isClosed = !isClosed;
+                isClosed = value;
 
                 if (isClosed)
                 {
@@ -49,9 +49,7 @@ public class Path
                         AutoSetAnchorControlPoints(0);
                         AutoSetAnchorControlPoints(points.Count - 3);
                     }
-
                 }
-
                 else
                 {
                     points.RemoveRange(points.Count - 2, 2);
@@ -70,7 +68,6 @@ public class Path
         {
             return autoSetControlPoints;
         }
-
         set
         {
             if(autoSetControlPoints != value)
@@ -92,7 +89,8 @@ public class Path
             return points[i];
         }
     }
-    public int NumPoints {get { return points.Count; } }
+
+    public int NumPoints { get { return points.Count; } }
 
     public int NumSegments
     {
@@ -161,7 +159,6 @@ public class Path
             {
                 points.RemoveRange(anchorIndex - 2, 3);
             }
-
             else
             {
                 points.RemoveRange(anchorIndex - 1, 3);
@@ -171,7 +168,12 @@ public class Path
 
     public Vector3[] GetPointsInSegment(int i)
     {
-        return new Vector3[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[LoopIndex( i * 3 + 3 )]};
+        return new Vector3[] {
+            points[i * 3],
+            points[i * 3 + 1],
+            points[i * 3 + 2],
+            points[LoopIndex( i * 3 + 3 )]
+        };
     }
 
     public void MovePoint(int i, Vector3 pos)
@@ -222,14 +224,18 @@ public class Path
     {
         List<Vector3> evenlySpacedPoints = new List<Vector3>();
         evenlySpacedPoints.Add(points[0]);
+
         Vector3 previousPoint = points[0];
         float distanceSinceLastEvenPoint = 0;
+
         for(int segmentIndex = 0; segmentIndex < NumSegments; segmentIndex++)
         {
             Vector3[] p = GetPointsInSegment(segmentIndex);
+
             float controlNetLength = Vector3.Distance(p[0], p[1]) + Vector3.Distance(p[1], p[2]) + Vector3.Distance(p[2], p[3]);
             float estimatedCurveLength = Vector3.Distance(p[0], p[3]) + controlNetLength / 2f;
             int divisions = Mathf.CeilToInt(estimatedCurveLength * resolution * 10);
+
             float t = 0;
             while (t <= 1)
             {
