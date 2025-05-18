@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
-using System.Diagnostics;
-using System.Collections.Specialized;
-using System;
 
 [CustomEditor(typeof(PathCreator))]
 public class PathEditor : Editor
@@ -63,13 +58,12 @@ public class PathEditor : Editor
             if(selectedSegmentIndex != -1) // If hovering over a segment
             {
                 Undo.RecordObject(creator, "Split segment");
-                path.SplitSegment(new Vector3(mousePos.x, mousePos.y, creator.transform.position.z), selectedSegmentIndex);
+                path.SplitSegment(new Vector3(mousePos.x, mousePos.y, creator.transform.position.z) - creator.transform.position, selectedSegmentIndex);
             }
-
             else if(!path.IsClosed)
             {
                 Undo.RecordObject(creator, "Add segment");
-                path.AddSegment(new Vector3(mousePos.x, mousePos.y, creator.transform.position.z));
+                path.AddSegment(new Vector3(mousePos.x, mousePos.y, creator.transform.position.z) - creator.transform.position);
             }
         }
 
@@ -92,7 +86,7 @@ public class PathEditor : Editor
             }
         }
 
-            if (guiEvent.type == EventType.MouseDown && guiEvent.button == 1)
+        if (guiEvent.type == EventType.MouseDown && guiEvent.button == 1)
         {
             float minDistToAnchor = creator.anchorDiameter * 0.5f;
             int closestAnchorIndex = -1;
@@ -122,7 +116,8 @@ public class PathEditor : Editor
             for (int i = 0; i < path.NumSegments; i++)
             {
                 Vector3[] points = path.GetPointsInSegment(i);
-                float dist = HandleUtility.DistancePointBezier(new Vector3(mousePos.x, mousePos.y, creator.transform.position.z), points[0], points[3], points[1], points[2]);
+
+                float dist = HandleUtility.DistancePointBezier(new Vector3(mousePos.x, mousePos.y, creator.transform.position.z) - creator.transform.position, points[0], points[3], points[1], points[2]);
                 if (dist < minDistToSegment)
                 {
                     minDistToSegment = dist;
@@ -140,46 +135,53 @@ public class PathEditor : Editor
         path.controlHeld = guiEvent.control;
     }
 
-        void Draw()
+    void Draw()
+    {
+        for (int i = 0; i < path.NumSegments; i++)
         {
-
-            for (int i = 0; i < path.NumSegments; i++)
+            Vector3[] points = path.GetPointsInSegment(i);
+            for(int j = 0; j < points.Length; ++j)
             {
-                Vector3[] points = path.GetPointsInSegment(i);
-                if(creator.displayControlPoints)
-                {
-                    Handles.color = Color.green;
-                    Handles.DrawLine(points[1], points[0]);
-                    Handles.DrawLine(points[2], points[3]);
-                }
-                Color segmentColor = (i == selectedSegmentIndex && Event.current.shift) ? creator.selectedSegmentColor : creator.segmentColor;
-                Handles.DrawBezier(points[0], points[3], points[1], points[2], segmentColor, null, 10);
+                points[j] += creator.transform.position;
             }
 
-            for (int i = 0; i < path.NumPoints; i++)
+            if(creator.displayControlPoints)
             {
-                if (i % 3 == 0 || creator.displayControlPoints)
+                Handles.color = Color.green;
+                Handles.DrawLine(points[1], points[0]);
+                Handles.DrawLine(points[2], points[3]);
+            }
+
+            Color segmentColor = (i == selectedSegmentIndex && Event.current.shift) ? creator.selectedSegmentColor : creator.segmentColor;
+            Handles.DrawBezier(points[0], points[3], points[1], points[2], segmentColor, null, 10);
+        }
+
+        for (int i = 0; i < path.NumPoints; i++)
+        {
+            if (i % 3 == 0 || creator.displayControlPoints)
+            {
+                Handles.color = (i % 3 == 0) ? creator.anchorColor : creator.controlColor;
+                float handleSize = (i % 3 == 0) ? creator.anchorDiameter : creator.controlDiameter;
+
+                Vector3 newPos = Handles.FreeMoveHandle(path[i] + creator.transform.position, Quaternion.identity, handleSize, Vector2.zero, Handles.CylinderHandleCap);
+                if (path[i] + creator.transform.position != newPos)
                 {
-                    Handles.color = (i % 3 == 0) ? creator.anchorColor : creator.controlColor;
-                    float handleSize = (i % 3 == 0) ? creator.anchorDiameter : creator.controlDiameter;
-                    Vector3 newPos = Handles.FreeMoveHandle(path[i], Quaternion.identity, handleSize, Vector2.zero, Handles.CylinderHandleCap);
-                    if (path[i] != newPos)
-                    {
-                        Undo.RecordObject(creator, "Move Point");
-                        path.MovePoint(i, newPos);
-                    }
+                    Undo.RecordObject(creator, "Move Point");
+                    path.MovePoint(i, newPos - creator.transform.position);
                 }
             }
         }
+    }
 
-        private void OnEnable()
+    private void OnEnable()
+    {
+        creator = (PathCreator)target;
+
+        if (creator.path == null)
         {
-            creator = (PathCreator)target;
-            if (creator.path == null)
-            {
-                creator.CreatePath();
-            }
-            path = creator.path;
+            creator.CreatePath();
         }
 
+        path = creator.path;
+    }
  }

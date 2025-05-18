@@ -8,13 +8,15 @@ public class PathMeshCreator : MonoBehaviour
     [Range(0.05f, 1.5f)]
     public float spacing = 1;
     public float pathWidth = 1;
-    public bool autoUpdate;
+    public bool autoUpdate = false;
+
     public void UpdatePath()
     {
         Path path = GetComponent<PathCreator>().path;
         Vector3[] points = path.CalculateEvenlySpacedPoints(spacing, 1);
         GetComponent<MeshFilter>().mesh = CreatePathMesh(points);
     }
+
     Mesh CreatePathMesh(Vector3[] points)
     {
         Vector3[] verts = new Vector3[points.Length * 2];
@@ -39,7 +41,7 @@ public class PathMeshCreator : MonoBehaviour
             Vector3 top = new Vector3(-forward.y, forward.x, 0);
             top.Normalize();
 
-            verts[vertIndex] = points[i]; //+ top * pathWidth;
+            verts[vertIndex] = points[i];
             verts[vertIndex + 1] = points[i] - new Vector3(top.x, top.y, points[i].z) * pathWidth;
 
             if(i < points.Length - 1)
@@ -63,5 +65,4 @@ public class PathMeshCreator : MonoBehaviour
 
         return mesh;
     }
-
 }

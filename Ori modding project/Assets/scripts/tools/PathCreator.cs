@@ -17,7 +17,7 @@ public class PathCreator : MonoBehaviour
 
     public void CreatePath()
     {
-        path = new Path(transform.position);
+        path = new Path(Vector3.zero);
     }
     
 }
