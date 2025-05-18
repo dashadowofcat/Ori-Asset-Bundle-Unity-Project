@@ -14,15 +14,11 @@ public class SpriteDropHandler : MonoBehaviour
 
     private static void OnSceneGUI(SceneView sceneView)
     {
-
         Event Event = Event.current;
         
         if (Event.type == EventType.DragPerform)
         {
-
-            
             DragAndDrop.AcceptDrag();
-
             
             foreach (Object draggedObject in DragAndDrop.objectReferences)
             {
@@ -32,7 +28,7 @@ public class SpriteDropHandler : MonoBehaviour
 
                     Vector3 mousePosition = HandleUtility.GUIPointToWorldRay(Event.mousePosition).origin;
 
-                    ConvertTo3DPlane(sprite.texture, mousePosition);
+                    ConvertTo3DQuad(sprite.texture, mousePosition);
 
                     Event.Use();
                 }
@@ -43,12 +39,11 @@ public class SpriteDropHandler : MonoBehaviour
         
     }
 
-    private static void ConvertTo3DPlane(Texture2D texture, Vector3 position)
+    private static void ConvertTo3DQuad(Texture2D texture, Vector3 position)
     {
-        GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Quad);
 
         if (PrefabStageUtility.GetCurrentPrefabStage() != null) plane.transform.parent = PrefabStageUtility.GetCurrentPrefabStage().prefabContentsRoot.transform;
-
 
         Renderer renderer = plane.GetComponent<Renderer>();
 
@@ -67,10 +62,7 @@ public class SpriteDropHandler : MonoBehaviour
         position.z = 0;
 
         plane.transform.position = position;
-
-        plane.transform.localScale = new Vector3(texture.width / 1000f, 1, texture.height / 1000f);
-        plane.transform.eulerAngles = new Vector3(90, 0, 180);
-
+        plane.transform.localScale = new Vector3(texture.width / 100f, texture.height / 100f, 1);
         plane.name = texture.name;
 
         Selection.activeGameObject = plane;
