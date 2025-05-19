@@ -14,51 +14,49 @@ public class SpriteDropHandler : MonoBehaviour
 
     private static void OnSceneGUI(SceneView sceneView)
     {
-
         Event Event = Event.current;
         
         if (Event.type == EventType.DragPerform)
         {
-
-            
             DragAndDrop.AcceptDrag();
-
             
             foreach (Object draggedObject in DragAndDrop.objectReferences)
             {
-                
                 if (draggedObject is Sprite sprite)
                 {
-
                     Vector3 mousePosition = HandleUtility.GUIPointToWorldRay(Event.mousePosition).origin;
 
-                    ConvertTo3DPlane(sprite.texture, mousePosition);
+                    ConvertTo3DQuad(sprite.texture, mousePosition);
 
                     Event.Use();
                 }
-                
+                else if(draggedObject is Texture2D texture)
+                {
+                    Vector3 mousePosition = HandleUtility.GUIPointToWorldRay(Event.mousePosition).origin;
+
+                    ConvertTo3DQuad(texture, mousePosition);
+
+                    Event.Use();
+                }
             }
-            
         }
-        
     }
 
-    private static void ConvertTo3DPlane(Texture2D texture, Vector3 position)
+    private static void ConvertTo3DQuad(Texture2D texture, Vector3 position)
     {
-        GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
 
-        if (PrefabStageUtility.GetCurrentPrefabStage() != null) plane.transform.parent = PrefabStageUtility.GetCurrentPrefabStage().prefabContentsRoot.transform;
+        if (PrefabStageUtility.GetCurrentPrefabStage() != null) quad.transform.parent = PrefabStageUtility.GetCurrentPrefabStage().prefabContentsRoot.transform;
 
+        Renderer renderer = quad.GetComponent<Renderer>();
 
-        Renderer renderer = plane.GetComponent<Renderer>();
-
-        DestroyImmediate(plane.GetComponent<MeshCollider>());
+        DestroyImmediate(quad.GetComponent<MeshCollider>());
 
         Material spriteMaterial = new Material(Shader.Find("Sprites/Default"));
         spriteMaterial.mainTexture = texture;
 
         string materialFolderPath = "Assets/level data/Resources/materials";
-        string materialPath = $"{materialFolderPath}/{texture.name} ({plane.GetInstanceID()})_Material.mat";
+        string materialPath = $"{materialFolderPath}/{texture.name} ({quad.GetInstanceID()})_Material.mat";
         AssetDatabase.CreateAsset(spriteMaterial, materialPath);
         AssetDatabase.SaveAssets();
 
@@ -66,13 +64,10 @@ public class SpriteDropHandler : MonoBehaviour
 
         position.z = 0;
 
-        plane.transform.position = position;
+        quad.transform.position = position;
+        quad.transform.localScale = new Vector3(texture.width / 100f, texture.height / 100f, 1f);
+        quad.name = texture.name;
 
-        plane.transform.localScale = new Vector3(texture.width / 1000f, 1, texture.height / 1000f);
-        plane.transform.eulerAngles = new Vector3(90, 0, 180);
-
-        plane.name = texture.name;
-
-        Selection.activeGameObject = plane;
+        Selection.activeGameObject = quad;
     }
 }
