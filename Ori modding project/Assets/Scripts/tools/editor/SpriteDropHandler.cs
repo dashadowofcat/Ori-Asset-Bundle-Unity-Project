@@ -22,41 +22,38 @@ public class SpriteDropHandler : MonoBehaviour
             
             foreach (Object draggedObject in DragAndDrop.objectReferences)
             {
+                
                 if (draggedObject is Sprite sprite)
                 {
+
                     Vector3 mousePosition = HandleUtility.GUIPointToWorldRay(Event.mousePosition).origin;
 
                     ConvertTo3DQuad(sprite.texture, mousePosition);
 
                     Event.Use();
                 }
-                else if(draggedObject is Texture2D texture)
-                {
-                    Vector3 mousePosition = HandleUtility.GUIPointToWorldRay(Event.mousePosition).origin;
-
-                    ConvertTo3DQuad(texture, mousePosition);
-
-                    Event.Use();
-                }
+                
             }
+            
         }
+        
     }
 
     private static void ConvertTo3DQuad(Texture2D texture, Vector3 position)
     {
-        GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Quad);
 
-        if (PrefabStageUtility.GetCurrentPrefabStage() != null) quad.transform.parent = PrefabStageUtility.GetCurrentPrefabStage().prefabContentsRoot.transform;
+        if (PrefabStageUtility.GetCurrentPrefabStage() != null) plane.transform.parent = PrefabStageUtility.GetCurrentPrefabStage().prefabContentsRoot.transform;
 
-        Renderer renderer = quad.GetComponent<Renderer>();
+        Renderer renderer = plane.GetComponent<Renderer>();
 
-        DestroyImmediate(quad.GetComponent<MeshCollider>());
+        DestroyImmediate(plane.GetComponent<MeshCollider>());
 
         Material spriteMaterial = new Material(Shader.Find("Sprites/Default"));
         spriteMaterial.mainTexture = texture;
 
         string materialFolderPath = "Assets/level data/Resources/materials";
-        string materialPath = $"{materialFolderPath}/{texture.name} ({quad.GetInstanceID()})_Material.mat";
+        string materialPath = $"{materialFolderPath}/{texture.name} ({plane.GetInstanceID()})_Material.mat";
         AssetDatabase.CreateAsset(spriteMaterial, materialPath);
         AssetDatabase.SaveAssets();
 
@@ -64,10 +61,10 @@ public class SpriteDropHandler : MonoBehaviour
 
         position.z = 0;
 
-        quad.transform.position = position;
-        quad.transform.localScale = new Vector3(texture.width / 100f, texture.height / 100f, 1f);
-        quad.name = texture.name;
+        plane.transform.position = position;
+        plane.transform.localScale = new Vector3(texture.width / 100f, texture.height / 100f, 1);
+        plane.name = texture.name;
 
-        Selection.activeGameObject = quad;
+        Selection.activeGameObject = plane;
     }
 }
