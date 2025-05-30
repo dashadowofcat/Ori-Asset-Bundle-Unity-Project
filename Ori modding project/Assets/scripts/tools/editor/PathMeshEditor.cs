@@ -12,6 +12,12 @@ public class PathMeshEditor : Editor
         {
             creator.UpdatePath();
         }
+
+        if(Event.current.type == EventType.KeyDown)
+        {
+            if (Event.current.keyCode == KeyCode.S && Event.current.control)
+                creator.SavePathAsset();
+        }
     }
 
     void OnEnable()

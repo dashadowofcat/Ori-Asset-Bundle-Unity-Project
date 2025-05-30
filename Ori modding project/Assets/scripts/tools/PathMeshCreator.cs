@@ -1,11 +1,6 @@
 ﻿using NaughtyAttributes;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.SceneManagement;
 using UnityEditor;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using static DamageDealerParameters;
 
@@ -20,10 +15,10 @@ public class PathMeshCreator : MonoBehaviour
     [Range(0.05f, 1.5f)]
     public float spacing = 0.5f;
     public float pathWidth = 0.25f;
-    public bool autoUpdate = false;
+    public bool autoUpdate = true;
     public float tiling = 1;
     public bool hasRenderer = true;
-    public bool hasCollision = false;
+    public bool hasCollision = true;
 
 
     public bool IsDamageDealer;
@@ -34,33 +29,30 @@ public class PathMeshCreator : MonoBehaviour
     [ShowIf("IsDamageDealer")]
     public DamageDealerParameters.damageType DamageType;
 
+    private Material rendererMaterial;
+    public Color rendererColor = Color.white;
+
     [Header("Save Settings")]
-    public string SavePath = string.Empty;
-
-    public bool autoSave = true;
-
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.LeftControl))
-        {
-            savePathAsset();
-        }
-    }
+    public string MaterialSavePath = string.Empty;
+    public string ColliderMeshSavePath = string.Empty;
+    public string RendererMeshSavePath = string.Empty;
 
     public void UpdatePath()
     {
-        if(SavePath == string.Empty)
-        {
-            GenerateSavePath();
-        }
         Path path = GetComponent<PathCreator>().path;
         Vector3[] points = path.CalculateEvenlySpacedPoints(spacing, 1);
+
         if(hasRenderer)
         {
             GetComponent<MeshFilter>().mesh = CreatePathMesh(points, path.IsClosed);
-            int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
-            GetComponent<MeshRenderer>().sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat); // THIS NEEDS TO BE FIXED
+
+            if(rendererMaterial == null)
+                rendererMaterial = new Material((Material)Resources.Load("Basic/White"));
+
+            GetComponent<MeshRenderer>().material = rendererMaterial;
+            GetComponent<MeshRenderer>().sharedMaterial.color = rendererColor;
         }
+
         if (hasCollision)
         {
             GetComponent<MeshCollider>().sharedMesh = CreatePathCollision(points, path.IsClosed);
@@ -175,25 +167,70 @@ public class PathMeshCreator : MonoBehaviour
         return mesh;
     }
 
-    void savePathAsset()
+    public void SavePathAsset()
     {
+        Debug.Log("Saving path assets...");
+
 #if UNITY_EDITOR
-        AssetDatabase.CreateAsset(GetComponent<MeshCollider>().sharedMesh, SavePath);
-        AssetDatabase.CreateAsset(GetComponent<MeshFilter>(), SavePath);
+        if (MaterialSavePath != string.Empty)
+            AssetDatabase.DeleteAsset(MaterialSavePath);
+        if (ColliderMeshSavePath != string.Empty)
+            AssetDatabase.DeleteAsset(ColliderMeshSavePath);
+        if (RendererMeshSavePath != string.Empty)
+            AssetDatabase.DeleteAsset(RendererMeshSavePath);
+#endif
+
+        MaterialSavePath = string.Empty;
+        ColliderMeshSavePath = string.Empty;
+        RendererMeshSavePath = string.Empty;
+
+        GenerateSavePath();
+
+        UpdatePath();
+
+#if UNITY_EDITOR
+        AssetDatabase.CreateAsset(GetComponent<MeshRenderer>().sharedMaterial, MaterialSavePath);
+        AssetDatabase.CreateAsset(GetComponent<MeshCollider>().sharedMesh, ColliderMeshSavePath);
+        AssetDatabase.CreateAsset(GetComponent<MeshFilter>().sharedMesh, RendererMeshSavePath);
+
         AssetDatabase.SaveAssets();
 #endif
     }
 
     void GenerateSavePath()
     {
-        if (SavePath == string.Empty)
+        if (MaterialSavePath == string.Empty)
         {
-            SavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
+            MaterialSavePath = $"Assets/level data/Resources/materials/{transform.name} {GenerateRandomString(10)}.mat";
 
 #if UNITY_EDITOR
-            while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(SavePath)))
+            while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(MaterialSavePath)))
             {
-                SavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(5)}.mesh";
+                MaterialSavePath = $"Assets/level data/Resources/materials/{transform.name} {GenerateRandomString(10)}.mat";
+            }
+#endif
+        }
+
+        if (ColliderMeshSavePath == string.Empty)
+        {
+            ColliderMeshSavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(10)}.mesh";
+
+#if UNITY_EDITOR
+            while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(ColliderMeshSavePath)) || ColliderMeshSavePath == RendererMeshSavePath)
+            {
+                ColliderMeshSavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(10)}.mesh";
+            }
+#endif
+        }
+
+        if (RendererMeshSavePath == string.Empty)
+        {
+            RendererMeshSavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(10)}.mesh";
+
+#if UNITY_EDITOR
+            while (!string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(RendererMeshSavePath)) || ColliderMeshSavePath == RendererMeshSavePath)
+            {
+                RendererMeshSavePath = $"Assets/level data/Resources/meshes/{transform.name} {GenerateRandomString(10)}.mesh";
             }
 #endif
         }
