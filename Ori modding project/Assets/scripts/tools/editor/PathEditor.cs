@@ -133,6 +133,8 @@ public class PathEditor : Editor
         }
 
         path.controlHeld = guiEvent.control;
+
+        HandleUtility.AddDefaultControl(0);
     }
 
     void Draw()
@@ -147,7 +149,7 @@ public class PathEditor : Editor
 
             if(creator.displayControlPoints)
             {
-                Handles.color = Color.green;
+                Handles.color = Color.red;
                 Handles.DrawLine(points[1], points[0]);
                 Handles.DrawLine(points[2], points[3]);
             }
