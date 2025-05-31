@@ -10,7 +10,7 @@ using static DamageDealerParameters;
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshCollider))]
 [RequireComponent(typeof(MeshRenderer))]
-public class PathMeshCreator : MonoBehaviour
+public class PathMeshCreator : MonoBehaviour, ILevelAsset
 {
     [Range(0.05f, 1.5f)]
     public float spacing = 0.5f;
@@ -44,13 +44,13 @@ public class PathMeshCreator : MonoBehaviour
 
         if(hasRenderer)
         {
-            GetComponent<MeshFilter>().mesh = CreatePathMesh(points, path.IsClosed);
-
-            if(rendererMaterial == null)
+            if (rendererMaterial == null)
                 rendererMaterial = new Material((Material)Resources.Load("Basic/White"));
 
             GetComponent<MeshRenderer>().material = rendererMaterial;
             GetComponent<MeshRenderer>().sharedMaterial.color = rendererColor;
+
+            GetComponent<MeshFilter>().mesh = CreatePathMesh(points, path.IsClosed);
         }
 
         if (hasCollision)
@@ -111,7 +111,7 @@ public class PathMeshCreator : MonoBehaviour
         Mesh mesh = new Mesh();
         mesh.vertices = verts;
         mesh.triangles = tris;
-        mesh.uv = uvs;
+        //mesh.uv = uvs;
 
         return mesh;
     }
@@ -163,13 +163,12 @@ public class PathMeshCreator : MonoBehaviour
         mesh.vertices = verts;
         mesh.triangles = tris;
 
-
         return mesh;
     }
 
-    public void SavePathAsset()
+    public void SaveAsset()
     {
-        Debug.Log("Saving path assets...");
+        Debug.Log("Saving path asset " + gameObject.name + "...");
 
 #if UNITY_EDITOR
         if (MaterialSavePath != string.Empty)
@@ -184,9 +183,9 @@ public class PathMeshCreator : MonoBehaviour
         ColliderMeshSavePath = string.Empty;
         RendererMeshSavePath = string.Empty;
 
-        GenerateSavePath();
-
         UpdatePath();
+
+        GenerateSavePath();
 
 #if UNITY_EDITOR
         AssetDatabase.CreateAsset(GetComponent<MeshRenderer>().sharedMaterial, MaterialSavePath);
@@ -239,9 +238,7 @@ public class PathMeshCreator : MonoBehaviour
     string GenerateRandomString(int Length)
     {
         System.Random random = new System.Random();
-
         string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
         return new string(Enumerable.Repeat(chars, Length).Select(s => s[random.Next(s.Length)]).ToArray());
     }
 }

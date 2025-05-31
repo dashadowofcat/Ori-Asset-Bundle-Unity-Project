@@ -6,22 +6,16 @@ public class PathMeshEditor : Editor
 {
     PathMeshCreator creator;
 
+    void OnEnable()
+    {
+        creator = (PathMeshCreator)target;
+    }
+
     private void OnSceneGUI()
     {
         if(creator.autoUpdate && Event.current.type == EventType.Repaint)
         {
             creator.UpdatePath();
         }
-
-        if(Event.current.type == EventType.KeyDown)
-        {
-            if (Event.current.keyCode == KeyCode.S && Event.current.control)
-                creator.SavePathAsset();
-        }
-    }
-
-    void OnEnable()
-    {
-        creator = (PathMeshCreator)target;
     }
 }

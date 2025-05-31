@@ -24,46 +24,31 @@ public class PolygonRenderer : MonoBehaviour
     [Button("Generate Renderer")]
     public void GenerateShape()
     {
-        if (transform.Find("Renderer") != null) DestroyImmediate(transform.Find("Renderer").gameObject);
+        if (transform.Find("Renderer") != null)
+            DestroyImmediate(transform.Find("Renderer").gameObject);
 
-
-        List<Vector2> Points = Polygon.Points;
-
-        Mesh PolygonMesh = PolygonMeshGenerator.CreateMeshFromPolygon(Points);
-
+        Mesh PolygonMesh = PolygonMeshGenerator.CreateMeshFromPolygon(Polygon.Points);
 
         GameObject Renderer = new GameObject("Renderer");
-
         Renderer.transform.position = transform.position;
-
         Renderer.transform.Rotate(new Vector3(-90, 0, 0));
-
         Renderer.transform.parent = gameObject.transform;
 
-        MeshFilter meshFilter = Renderer.AddComponent<MeshFilter>();
-
         MeshRenderer meshRenderer = Renderer.AddComponent<MeshRenderer>();
-
         meshRenderer.material = new Material((Material)Resources.Load("Basic/White"));
-
         meshRenderer.sharedMaterial.color = Color;
 
+        MeshFilter meshFilter = Renderer.AddComponent<MeshFilter>();
         meshFilter.mesh = PolygonMesh;
 
         GenerateSavePath();
 
 #if UNITY_EDITOR
-
         AssetDatabase.CreateAsset(meshRenderer.sharedMaterial, MaterialSavePath);
-
         AssetDatabase.CreateAsset(meshFilter.sharedMesh, MeshSavePath);
-
         AssetDatabase.SaveAssets();
-
 #endif
     }
-
-    
 
     [Button(null, EButtonEnableMode.Editor)]
     public void RemoveRenderer()
@@ -74,9 +59,7 @@ public class PolygonRenderer : MonoBehaviour
 
 #if UNITY_EDITOR
             AssetDatabase.DeleteAsset(MaterialSavePath);
-
             AssetDatabase.DeleteAsset(MeshSavePath);
-
             AssetDatabase.SaveAssets();
 #endif
         }

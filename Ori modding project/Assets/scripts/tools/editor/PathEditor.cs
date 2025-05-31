@@ -108,7 +108,7 @@ public class PathEditor : Editor
             }
         }
 
-        if(guiEvent.type == EventType.MouseMove)
+        if (guiEvent.type == EventType.MouseMove)
         {
             float minDistToSegment = segmentSelectDistanceThreshold;
             int newSelectedSegmentIndex = -1;
