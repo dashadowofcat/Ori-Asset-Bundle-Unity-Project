@@ -13,6 +13,13 @@ public class PathMeshEditor : Editor
 
     private void OnSceneGUI()
     {
+        EventType curEventType = Event.current.type;
+
+        //if(curEventType != EventType.Layout && curEventType != EventType.MouseMove)
+        //{
+        //    Debug.Log("Event Type: " + curEventType.ToString());
+        //}
+
         if(creator.autoUpdate && Event.current.type == EventType.Repaint)
         {
             creator.UpdatePath();

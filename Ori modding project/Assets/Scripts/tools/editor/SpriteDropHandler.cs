@@ -22,17 +22,18 @@ public class SpriteDropHandler : MonoBehaviour
             
             foreach (Object draggedObject in DragAndDrop.objectReferences)
             {
-                
                 if (draggedObject is Sprite sprite)
                 {
-
                     Vector3 mousePosition = HandleUtility.GUIPointToWorldRay(Event.mousePosition).origin;
-
                     ConvertTo3DQuad(sprite.texture, mousePosition);
-
                     Event.Use();
                 }
-                
+                else if(draggedObject is Texture2D texture2D)
+                {
+                    Vector3 mousePosition = HandleUtility.GUIPointToWorldRay(Event.mousePosition).origin;
+                    ConvertTo3DQuad(texture2D, mousePosition);
+                    Event.Use();
+                }
             }
             
         }

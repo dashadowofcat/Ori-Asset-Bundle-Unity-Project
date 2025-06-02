@@ -12,15 +12,22 @@ using static DamageDealerParameters;
 [RequireComponent(typeof(MeshRenderer))]
 public class PathMeshCreator : MonoBehaviour, ILevelAsset
 {
+    public bool autoUpdate = true;
+
     [Range(0.05f, 1.5f)]
     public float spacing = 0.5f;
-    public float pathWidth = 0.25f;
-    public bool autoUpdate = true;
-    public float tiling = 1;
+
+    [Header("Renderer Settings")]
     public bool hasRenderer = true;
+    private Material rendererMaterial;
+    public Color rendererColor = Color.white;
+    public float rendererWidth = 0.05f;
+
+    [Header("Collider Settings")]
     public bool hasCollision = true;
+    public float colliderWidth = 1f;
 
-
+    [Header("Damager Settings")]
     public bool IsDamageDealer;
 
     [ShowIf("IsDamageDealer")]
@@ -28,9 +35,6 @@ public class PathMeshCreator : MonoBehaviour, ILevelAsset
 
     [ShowIf("IsDamageDealer")]
     public DamageDealerParameters.damageType DamageType;
-
-    private Material rendererMaterial;
-    public Color rendererColor = Color.white;
 
     [Header("Save Settings")]
     public string MaterialSavePath = string.Empty;
@@ -52,14 +56,27 @@ public class PathMeshCreator : MonoBehaviour, ILevelAsset
 
             GetComponent<MeshFilter>().mesh = CreatePathMesh(points, path.IsClosed);
         }
+        else
+        {
+            DeleteRendererAsset();
+
+            GetComponent<MeshFilter>().mesh = null;
+            GetComponent<MeshRenderer>().material = null;
+        }
 
         if (hasCollision)
         {
             GetComponent<MeshCollider>().sharedMesh = CreatePathCollision(points, path.IsClosed);
         }
+        else
+        {
+            DeleteColliderAsset();
+
+            GetComponent<MeshCollider>().sharedMesh = null;
+        }
     }
 
-    Mesh CreatePathMesh(Vector3[] points, bool isClosed)
+    private Mesh CreatePathMesh(Vector3[] points, bool isClosed)
     {
         Vector3[] verts = new Vector3[points.Length * 2];
         Vector2[] uvs = new Vector2[verts.Length];
@@ -86,7 +103,7 @@ public class PathMeshCreator : MonoBehaviour, ILevelAsset
             top.Normalize();
 
             verts[vertIndex] = points[i];
-            verts[vertIndex + 1] = points[i] - new Vector3(top.x, top.y, points[i].z + pathWidth);
+            verts[vertIndex + 1] = points[i] - new Vector3(top.x, top.y, 0f) * rendererWidth;
 
             float completionPercent = i / (float)(points.Length - 1);
             float v = 1 - Mathf.Abs(2 * completionPercent - 1);
@@ -116,7 +133,7 @@ public class PathMeshCreator : MonoBehaviour, ILevelAsset
         return mesh;
     }
 
-    Mesh CreatePathCollision(Vector3[] points, bool isClosed) 
+    private Mesh CreatePathCollision(Vector3[] points, bool isClosed) 
     {
         Vector3[] verts = new Vector3[points.Length * 2];
         int numTris = 2 * (points.Length - 1) + ((isClosed) ? 2 : 0);
@@ -141,8 +158,8 @@ public class PathMeshCreator : MonoBehaviour, ILevelAsset
             Vector3 top = new Vector3(-forward.y, forward.x, 0);
             top.Normalize();
 
-            verts[vertIndex] = points[i] + new Vector3(0, 0, pathWidth);
-            verts[vertIndex + 1] = points[i] - new Vector3(0, 0, pathWidth);
+            verts[vertIndex] = points[i] + new Vector3(0, 0, colliderWidth);
+            verts[vertIndex + 1] = points[i] - new Vector3(0, 0, colliderWidth);
 
             if (i < points.Length - 1 || isClosed)
             {
@@ -166,37 +183,55 @@ public class PathMeshCreator : MonoBehaviour, ILevelAsset
         return mesh;
     }
 
-    public void SaveAsset()
+    public void DeleteRendererAsset()
     {
-        Debug.Log("Saving path asset " + gameObject.name + "...");
-
 #if UNITY_EDITOR
-        if (MaterialSavePath != string.Empty)
-            AssetDatabase.DeleteAsset(MaterialSavePath);
-        if (ColliderMeshSavePath != string.Empty)
-            AssetDatabase.DeleteAsset(ColliderMeshSavePath);
         if (RendererMeshSavePath != string.Empty)
             AssetDatabase.DeleteAsset(RendererMeshSavePath);
+        if (MaterialSavePath != string.Empty)
+            AssetDatabase.DeleteAsset(MaterialSavePath);
 #endif
 
-        MaterialSavePath = string.Empty;
-        ColliderMeshSavePath = string.Empty;
         RendererMeshSavePath = string.Empty;
+        MaterialSavePath = string.Empty;
+    }
+
+    public void DeleteColliderAsset()
+    {
+#if UNITY_EDITOR
+        if (ColliderMeshSavePath != string.Empty)
+            AssetDatabase.DeleteAsset(ColliderMeshSavePath);
+#endif
+
+        ColliderMeshSavePath = string.Empty;
+    }
+
+    public void SaveAsset()
+    {
+        DeleteColliderAsset();
+        DeleteRendererAsset();
 
         UpdatePath();
 
         GenerateSavePath();
 
 #if UNITY_EDITOR
-        AssetDatabase.CreateAsset(GetComponent<MeshRenderer>().sharedMaterial, MaterialSavePath);
-        AssetDatabase.CreateAsset(GetComponent<MeshCollider>().sharedMesh, ColliderMeshSavePath);
-        AssetDatabase.CreateAsset(GetComponent<MeshFilter>().sharedMesh, RendererMeshSavePath);
+        if(hasRenderer)
+        {
+            AssetDatabase.CreateAsset(GetComponent<MeshRenderer>().sharedMaterial, MaterialSavePath);
+            AssetDatabase.CreateAsset(GetComponent<MeshFilter>().sharedMesh, RendererMeshSavePath);
+        }
+        
+        if(hasCollision)
+        {
+            AssetDatabase.CreateAsset(GetComponent<MeshCollider>().sharedMesh, ColliderMeshSavePath);
+        }
 
         AssetDatabase.SaveAssets();
 #endif
     }
 
-    void GenerateSavePath()
+    private void GenerateSavePath()
     {
         if (MaterialSavePath == string.Empty)
         {
