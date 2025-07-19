@@ -1,9 +1,6 @@
 ﻿using NaughtyAttributes;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static DamageDealerParameters;
 
 [ExecuteInEditMode]
 public class MantisParameters : ElementParameter
@@ -13,6 +10,7 @@ public class MantisParameters : ElementParameter
     public mantisType MantisType;
 
     [Header("Spawner Settings")]
+    public float MinDistanceFromPlayer;
     public bool RespawnOnScreen;
     public float RespawnTime;
 
@@ -70,6 +68,8 @@ public class MantisParameters : ElementParameter
         SetInt("ExpOrbNumber", ExpOrbsNumber);
 
         // spawner
+
+        SetFloat("MinDistanceFromPlayer", MinDistanceFromPlayer);
 
         SetBool("RespawnOnScreen", RespawnOnScreen);
         SetFloat("RespawnTime", RespawnTime);
