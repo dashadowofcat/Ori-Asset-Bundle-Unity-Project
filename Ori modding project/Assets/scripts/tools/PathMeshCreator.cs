@@ -27,15 +27,6 @@ public class PathMeshCreator : MonoBehaviour, ILevelAsset
     public bool hasCollision = true;
     public float colliderWidth = 1f;
 
-    [Header("Damager Settings")]
-    public bool IsDamageDealer;
-
-    [ShowIf("IsDamageDealer")]
-    public float Damage;
-
-    [ShowIf("IsDamageDealer")]
-    public DamageDealerParameters.damageType DamageType;
-
     [Header("Save Settings")]
     public string MaterialSavePath = string.Empty;
     public string ColliderMeshSavePath = string.Empty;

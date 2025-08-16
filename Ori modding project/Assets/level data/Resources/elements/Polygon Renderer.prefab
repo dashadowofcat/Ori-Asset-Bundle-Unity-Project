@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Points:
-  - {x: 2, y: 1}
-  - {x: -2, y: 1}
-  - {x: 0, y: -2}
+  - {x: 5, y: 5}
+  - {x: -5, y: 5}
+  - {x: -5, y: -5}
+  - {x: 5, y: -5}
   SelectionPointSize: 0.6
   SelectionPointColor: {r: 1, g: 1, b: 1, a: 1}
   LineColor: {r: 0, g: 1, b: 0, a: 1}
@@ -71,3 +72,4 @@ MonoBehaviour:
   Material: {fileID: 2100000, guid: 533a749948f4cd844a01dc408f7b6b21, type: 2}
   MaterialSavePath: 
   MeshSavePath: 
+  autoSave: 0
